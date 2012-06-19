@@ -16,7 +16,7 @@ var IS_PROD = process.env['NODE_ENV']=='production';
  * pkg info
  */
    , pkg = require('./package.json')
-   , pkgAuthor = libMisc.parsePerson(pkg.author)
+   , pkgAuthor = libMisc.parsePerson(pkg.author);
 
 console.log("BOOTING UP "+pkg.name+" v"+pkg.version+" / node v"+process.versions.node+"...");
 
@@ -182,7 +182,7 @@ function up() {
     console.error("\nuncaughtException", exception);
   });
 
-  app.listen(IS_PROD ? 8080 : 3000, function() {
+  app.listen(IS_PROD ? 8001 : 3000, function() {
     console.log( "%s - Listening on port %d in %s mode"
     , (new Date()).toISOString()
     , app.address().port
