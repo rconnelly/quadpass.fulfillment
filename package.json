@@ -1,8 +1,8 @@
 {
-  "name": "express-boilerplate",
-  "author": "gaarf (/humans.txt)",
-  "description": "Express/Mongo/Bootstrap boilerplate",
-  "version": "0.0.3",
+  "name": "quadpass",
+  "author": "Ryan Connelly (/humans.txt)",
+  "description": "Online gift cards",
+  "version": "0.0.1",
   "main": "boot.js",
   "engines": {
     "node": "~0.6"
@@ -10,14 +10,16 @@
   "dependencies": {
     "express": ">=2.5.6",
     "ejs": ">=0.4.1",
-
     "mongoose": "*",
     "mongoose-auth": "*",
     "connect-mongodb": "*",
-
     "underscore": ">=1.1.6",
     "underscore.string": ">=1.1.6",
-    "dateformat": "*"
+    "dateformat": "*",
+    "shopnode": "git+ssh://git@github.com:rconnelly/shopnode.git",
+    "restify": "~0.5.4",
+    "async": "~0.1.15",
+    "jade": "~0.20.0"
   },
   "devDependencies": {
     "mocha": "*",

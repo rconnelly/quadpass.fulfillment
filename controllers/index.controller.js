@@ -1,9 +1,9 @@
 module.exports.setRoutes = function(app, kit) {
 
   app.get('/', function(req, res) {
-    res.render('misc/about', {
+    res.render('index', {
       page:{
-        title: 'About this app',
+        title: 'QuadPass.com',
         className: 'about'
       }
     });

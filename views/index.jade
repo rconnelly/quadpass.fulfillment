@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    .hero-unit
+        h1 QuadPass
+        p Gift Orders Page
+
+    p
+        | loggedIn:
+        pre #{req.loggedIn}
+        | user: #{JSON.stringify(req.user)}
