@@ -15,11 +15,18 @@
                                 | Welcome,
                                 strong #{user.displayName}
                                 b.caret
-                            li.divider
-                            li
-                                a.logout
-                                    i.icon-remove-circle
-                                    | Logout
+
+                            ul.dropdown-menu
+                                li
+                                    a(href='/account')
+                                        i.icon-user
+                                        | Your Account
+
+                                li.divider
+                                li
+                                    a.logout(href='/logout')
+                                        i.icon-remove-circle
+                                        | Logout
                 else
                     ul.nav.pull-right
                         li

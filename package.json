@@ -24,5 +24,9 @@
   "devDependencies": {
     "mocha": "*",
     "should": "*"
+  },
+  "subdomain": "quadpass",
+  "scripts": {
+    "start": "server.js"
   }
 }

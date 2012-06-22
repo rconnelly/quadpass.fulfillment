@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .hero-unit.text-center
+        p oops!
+        h1 #{statusText}
+
+    p.text-center
+        code
+            strong #{status}
+            | in response to
+            code
+                #{req.method + ' ' + req.url}
+
+    pre
+        #{JSON.stringify(req.headers)}

@@ -1,0 +1,6 @@
+
+- var id = id || (page.className ? page.className.split(' ')[0] + '-' : '') + 'input-' + field
+- var value = (req.body && req.body[field] || (model && model.get(field)) || ''
+- var error = req.body && errors[field]
+- var clearFixClass = 'clearfix' +  (error) ? ' error' : ''
+- var type = (field=='password') ? 'password' : 'text'

@@ -118,7 +118,7 @@ _.forEach(schemas, function(schema, name){
  app.configure(function(){
    app.set('views', __dirname + '/views');
    app.set('view engine', 'jade');
-   app.set('view options', { layout: false });
+   app.set('view options', { layout: false, pretty: true });
    app.use(express.favicon());
    app.use(express.static(__dirname + '/public'));
 
