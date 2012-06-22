@@ -199,7 +199,7 @@ function up() {
     console.error("\nuncaughtException", exception);
   });
 
-  app.listen(IS_PROD ? 8080 : 3000, function() {
+  app.listen(IS_PROD ? 80 : 3000, function() {
     console.log( "%s - Listening on port %d in %s mode"
     , (new Date()).toISOString()
     , app.address().port
