@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="045f7848-b2b5-4ef5-aea3-8f4ebed19408" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/giftcardfrom.controller.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/orderpage.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/boot.js" afterPath="$PROJECT_DIR$/boot.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/includes/_locations.jade" afterPath="$PROJECT_DIR$/views/includes/_locations.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
     </list>
     <ignored path="quadpass.fulfillment.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,19 +88,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="69" selection-start="489" selection-end="489" vertical-scroll-proportion="0.38406828">
+            <state line="16" column="35" selection-start="397" selection-end="397" vertical-scroll-proportion="-9.230769">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="boot.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="boot.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/boot.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="6" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
+            <state line="25" column="6" selection-start="499" selection-end="499" vertical-scroll-proportion="0.5144033">
               <folding />
             </state>
           </provider>
@@ -447,13 +443,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="6" selection-start="499" selection-end="499" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/index.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="10" selection-start="0" selection-end="159" vertical-scroll-proportion="0.0">
@@ -498,7 +487,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="69" selection-start="489" selection-end="489" vertical-scroll-proportion="0.38406828">
+        <state line="16" column="35" selection-start="397" selection-end="397" vertical-scroll-proportion="-9.230769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="6" selection-start="499" selection-end="499" vertical-scroll-proportion="0.5144033">
           <folding />
         </state>
       </provider>
