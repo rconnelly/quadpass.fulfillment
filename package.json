@@ -2,7 +2,7 @@
   "name": "quadpass",
   "author": "Ryan Connelly (/humans.txt)",
   "description": "Online gift cards",
-  "version": "0.0.1-3",
+  "version": "0.0.1-10",
   "main": "boot.js",
   "engines": {
     "node": "~0.6"
@@ -16,7 +16,7 @@
     "underscore": ">=1.1.6",
     "underscore.string": ">=1.1.6",
     "dateformat": "*",
-    "shopnode": "git+ssh://git@github.com:rconnelly/shopnode.git",
+    "shopnode": "https://github.com/rconnelly/shopnode/tarball/master",
     "restify": "~0.5.4",
     "async": "~0.1.15",
     "jade": "~0.20.0"

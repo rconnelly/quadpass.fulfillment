@@ -1,51 +1,11 @@
+- var items = ["one", "two", "three","four","five","six","seven","eight"]
 
 .thumbnails
-    li.span3
-        .thumbnail
-            img(src='http://placehold.it/260x180', alt='')
-            .caption
-                h5 Thumbnail label
-                p Thumbnail caption here
-    li.span3
-        .thumbnail
-            img(src='http://placehold.it/260x180', alt='')
-            .caption
-                h5 Thumbnail label
-                p Thumbnail caption here
-    li.span3
-        .thumbnail
-            img(src='http://placehold.it/260x180', alt='')
-            .caption
-                h5 Thumbnail label
-                p Thumbnail caption here
-    li.span3
-        .thumbnail
-            img(src='http://placehold.it/260x180', alt='')
-            .caption
-                h5 Thumbnail label
-                p Thumbnail caption here
-    li.span3
-        .thumbnail
-            img(src='http://placehold.it/260x180', alt='')
-            .caption
-                h5 Thumbnail label
-                p Thumbnail caption here
-    li.span3
-        .thumbnail
-            img(src='http://placehold.it/260x180', alt='')
-            .caption
-                h5 Thumbnail label
-                p Thumbnail caption here
-    li.span3
-        .thumbnail
-            img(src='http://placehold.it/260x180', alt='')
-            .caption
-                h5 Thumbnail label
-                p Thumbnail caption here
-    li.span3
-        .thumbnail
-            img(src='http://placehold.it/260x180', alt='')
-            .caption
-                h5 Thumbnail label
-                p Thumbnail caption here
-
+    each item in items
+        li.span3
+            .thumbnail
+                a(href='/gift-card-from/' + item)
+                    img(src='http://placehold.it/260x180', alt='')
+                .caption
+                    h5 Thumbnail label
+                    p Thumbnail caption here
