@@ -1,3 +1,5 @@
+var ObjectId = require('mongoose').Schema.ObjectId;
+
 module.exports.name = 'GiftCard';
 module.exports.get = function(mongoose) {
 
@@ -10,14 +12,6 @@ module.exports.get = function(mongoose) {
         mainImageUrl       : { type: String }
     }, { strict: true });
 
-    // !!! everyauth adds a bunch of stuff laterz
-
-    /*GiftCardSchema
-        .virtual('displayName')
-        .get(function () {
-            return this.twit.name || this.fb.name.full || this.login;
-        });
-    */
 
     return GiftCardSchema;
 }

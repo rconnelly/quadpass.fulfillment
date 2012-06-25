@@ -4,3 +4,84 @@ block content
     .page-header
         h1 #{page.title}&nbsp;
             small Order gifts from your favorite places
+
+    form.form-horizontal(action='/orderpage', method='post', accept-charset='utf-8')
+        input(type='hidden', name='_csrf', value=req.session._csrf)
+
+        section
+            h2 1. Recipient
+            .well
+                .control-group
+                    label.control-label(for='recipient[name]') Full Name
+                    .controls
+                        input.input-xlarge(id='recipient[name]'
+                            , name='recipient[name]'
+                            , type='text'
+                            , required)
+                        - var emailRegex = '[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?'
+
+                .control-group
+                    label.control-label(for='recipient[email]') Email
+                    .controls
+                        input.input-xlarge(id='recipient[email]'
+                            , name='recipient[email]'
+                            , type='email'
+                            , pattern=emailRegex
+                            , required)
+
+        section
+            h2 2. Gift Details
+            .well
+                .control-group
+                    label.control-label(for='gift[amount]') Gift Amount
+                    .controls
+                        .input-prepend.input-append
+                            span.add-on $
+                            input.input-mini.giftamount(style='text-align: right',id='gift[amount]',name='gift[amount]',type='text',disabled,required,pattern="[0-9]+")
+                            span.add-on .00
+
+                .control-group
+                    .controls
+                        div.btn-group.cardvalue(data-toggle='buttons-radio')
+                            a.btn.cardvalue-25 25
+                            a.btn.cardvalue-35 35
+                            a.btn.cardvalue-50 50
+                            a.btn.cardvalue-75 75
+                            a.btn.cardvalue-100 100
+                            a.btn.cardvalue-200 200
+                            a.btn.cardvalue-500 500
+                            a.btn.cardvalue-other Other
+
+        section
+            h2 2. Personalize
+            .well
+                .control-group
+                    label.control-label(for='gift[amount]') Personal Message
+                    .controls
+                        textarea.input-xlarge(id='gift[message]',name='gift[message]',rows='5')
+                .control-group
+                    label.control-label(for='gift[amount]') Upload a Video
+                    .controls
+                        input(type='file')
+
+
+        .form-actions.well
+            input.btn.btn-large.btn-primary(type='submit',value='Send')
+
+
+    script(type='text/javascript')
+        $('.cardvalue a').click(function(){
+            var value = $.trim($(this).text());
+            if(value == 'Other')
+            {
+                $('.giftamount').val('');
+                $('.giftamount').removeAttr('disabled');
+                $('.giftamount').focus();
+            }
+            else
+            {
+                $('.giftamount').attr('disabled', 'disabled');
+                $('.giftamount').val(value);
+            }
+        });
+

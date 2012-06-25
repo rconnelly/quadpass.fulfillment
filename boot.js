@@ -20,19 +20,17 @@ var IS_PROD = process.env['NODE_ENV']=='production';
 
 console.log("BOOTING UP "+pkg.name+" v"+pkg.version+" / node v"+process.versions.node+"...");
 
-var Shopnode = require('shopnode');
 
 /**
  * Kit
  */
 
 var sc = require('./etc/secrets.js');
+sc.init(IS_PROD);
 
 var log = require('restify').log;
 log.level(log.Level.Trace);
 
-var shopnodeConfig = sc.get('shopify');
-shopnodeConfig.log = log;
 
 var kit = {
     model: {}
@@ -41,7 +39,6 @@ var kit = {
   , log: log
   , parallelize: libMisc.parallelize
   , middleware: libMiddleware.base
-  , shopnode: new Shopnode(shopnodeConfig)
 };
 
 /**
@@ -59,6 +56,8 @@ var m = kit.secrets.get('mongoUrls')
 /**
  * Sessions
  */
+//var MongoStore = require('connect-mongodb');
+//var RedisStore = require('connect-redis')(express);
 var MongoStore = require('connect-mongodb');
 kit.sessionStorage = new MongoStore({ url: MONGO_SESS_URL });
 
@@ -118,7 +117,7 @@ _.forEach(schemas, function(schema, name){
  app.configure(function(){
    app.set('views', __dirname + '/views');
    app.set('view engine', 'jade');
-   app.set('view options', { layout: false, pretty: true });
+   app.set('view options', { layout: false, pretty: false });
    app.use(express.favicon());
    app.use(express.static(__dirname + '/public'));
 
@@ -186,7 +185,7 @@ fs.readdirSync('./controllers').forEach(function(file){
 
 /** Shopify **/
 
-require('./lib/init.js').init.shopnode(app, kit);
+//require('./lib/init.js').init.shopnode(app, kit);
 
 app.use(kit.middleware.fourOhFour);
 

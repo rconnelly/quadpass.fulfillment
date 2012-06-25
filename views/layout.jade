@@ -28,17 +28,16 @@ html(lang='en')
         if bootstrap
             include includes/_navbar
 
+        if jquery
+            script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+
+            script $.ajaxSetup({ cache: false, data: { _csrf: "#{req.session._csrf}" } });
 
         .container
             block content
 
         if bootstrap
             include includes/_footer
-
-        if jquery
-            script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
-
-            script $.ajaxSetup({ cache: false, data: { _csrf: "#{req.session._csrf}" } });
 
         if jquery && bootstrap
             script(src='/libs/bootstrap/js/bootstrap.js')
