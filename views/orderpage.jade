@@ -43,18 +43,32 @@ block content
                 .control-group
                     .controls
                         div.btn-group.cardvalue(data-toggle='buttons-radio')
-                            a.btn.cardvalue-25 25
-                            a.btn.cardvalue-35 35
-                            a.btn.cardvalue-50 50
-                            a.btn.cardvalue-75 75
-                            a.btn.cardvalue-100 100
-                            a.btn.cardvalue-200 200
-                            a.btn.cardvalue-500 500
+                            a.btn.cardvalue-25 $25
+                            a.btn.cardvalue-35 $35
+                            a.btn.cardvalue-50 $50
+                            a.btn.cardvalue-75 $75
+                            a.btn.cardvalue-100 $100
+                            a.btn.cardvalue-200 $200
+                            a.btn.cardvalue-500 $500
                             a.btn.cardvalue-other Other
 
         section
-            h2 2. Personalize
+            h2 3. Personalize
             .well
+                .control-group
+                    label.control-label(for='gift[amount]') Theme
+                    .controls
+                        ul.thumbnails.theme
+                            - var thumbs = ['Modern','Classic','Spring','Birthday'];
+                            each thumb in thumbs
+                                li
+                                    .thumbnail(href='#')
+                                        img(src='http://placehold.it/160x120', alt='')
+                                        .caption
+                                            label.radio(for='gift[theme]-'+thumb)
+                                                strong #{thumb}
+                                                input(type='radio',name='gift[theme]',id='gift[theme]-'+thumb)
+
                 .control-group
                     label.control-label(for='gift[amount]') Personal Message
                     .controls
@@ -63,15 +77,73 @@ block content
                     label.control-label(for='gift[amount]') Upload a Video
                     .controls
                         input(type='file')
+        section
+            h2 4. Payment
+            .well
+                .control-group
+                    label.control-label(for='payment[type]') Pay by
+                    .controls
+                        select.paymenttype(id='payment[type]',name='payment[type]')
+                            option(value='card') Credit Card
+                            option(value='check') Check
 
+                .control-group.card
+                    label.control-label(for='payment[name]') Name
+                    .controls
+                        input.input-large(type='text',id='payment[ccnum]',name='payment[ccnum]'
+                            , required)
+
+                .control-group.card
+                    label.control-label(for='payment[ccnum]') Account
+                    .controls
+                        .input-prepend
+                            span.add-on number
+                            input.input-large(type='text',id='payment[ccnum]',name='payment[ccnum]'
+                                , required)
+
+                            span.add-on exp
+                            input.input-mini(type='text',id='payment[exp]',name='payment[exp]'
+                                , placeholder='mm/yyyy'
+                                , pattern='^((0[1-9])|(1[0-2]))\/((2012)|(20[1-2][0-9]))$'
+                                , required)
+
+                            span.add-on cvv
+                            input.input-mini(type='text',id='payment[exp]',name='payment[cvv]'
+                                , placeholder=''
+                                , pattern='[0-9]{3,4}'
+                                , required)
+
+                .control-group.check
+                    label.control-label(for='payment[routingnum]') Check
+                    .controls
+                        .input-prepend
+                            span.add-on routing #
+                            input.input-medium(type='text',id='payment[routingnum]',name='payment[routingnum]')
+
+                            span.add-on account #
+                            input.input-medium(type='text',id='payment[accountnum]',name='payment[accountnum]')
+
+                            span.add-on check #
+                            input.input-small(type='text',id='payment[checknum]',name='payment[checknum]')
 
         .form-actions.well
             input.btn.btn-large.btn-primary(type='submit',value='Send')
 
 
     script(type='text/javascript')
+        $('.theme li img').click(function(){
+            $(this).siblings('.caption').find('input[type="radio"]').attr('checked',true);
+        });
+
+        $('.check').hide();
+
+        $('.paymenttype').change(function(){
+            $('.check').toggle();
+            $('.card').toggle();
+        });
+
         $('.cardvalue a').click(function(){
-            var value = $.trim($(this).text());
+            var value = $.trim($(this).text()).replace('$','');
             if(value == 'Other')
             {
                 $('.giftamount').val('');
