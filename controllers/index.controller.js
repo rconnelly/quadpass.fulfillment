@@ -4,15 +4,24 @@ var util = require('util')
 module.exports.setRoutes = function (app, kit) {
 
     app.get('/', function (req, res) {
+        var p = {
+          term: req.session.term || 'Restaurants',
+          location: req.session.location || 'Atlanta, GA'
+        };
 
-        res.render('index', {
-            page:{
-                title:'QuadPass.com',
-                className:'about',
-            },
-            searchResult:{ businesses:[] },
-            term:'Restaurants',
-            location:'Atlanta, GA'
+        kit.yelp.search({term:p.term, location:p.location}, function (error, data) {
+            if (error) return next(error);
+
+            res.render('index', {
+                page:{
+                    title:'QuadPass.com',
+                    className:'about'
+                },
+                searchResult:data,
+                term:p.term,
+                location:p.location,
+                error:error
+            });
         });
     });
 
@@ -35,18 +44,8 @@ module.exports.setRoutes = function (app, kit) {
     app.get('/gifts-for/:term/:location', function (req, res, next) {
         var p = req.params;
 
-        /*
-        res.render('index', {
-            page:{
-                title:'QuadPass.com',
-                className:'about'
-            },
-            searchResult:require('../test/data/atlanta-bar-result').data,
-            term:p.term,
-            location:p.location,
-            error:null
-        });
-        */
+        req.session.term = p.term;
+        req.session.location = p.location;
 
         kit.yelp.search({term:p.term, location:p.location}, function (error, data) {
             if (error) return next(error);
