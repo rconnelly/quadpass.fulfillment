@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="045f7848-b2b5-4ef5-aea3-8f4ebed19408" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/index.controller.js" afterPath="$PROJECT_DIR$/controllers/index.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/secrets.js" afterPath="$PROJECT_DIR$/etc/secrets.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/includes/mixins/_listing.mixin.jade" afterPath="$PROJECT_DIR$/views/includes/mixins/_listing.mixin.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
     </list>
     <ignored path="quadpass.fulfillment.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -94,7 +90,7 @@
       <file leaf-file-name="secrets.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/etc/secrets.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="12" selection-start="1486" selection-end="1486" vertical-scroll-proportion="0.55719554">
+            <state line="28" column="10" selection-start="0" selection-end="2564" vertical-scroll-proportion="0.27675277">
               <folding />
             </state>
           </provider>
@@ -505,7 +501,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/etc/secrets.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="12" selection-start="1486" selection-end="1486" vertical-scroll-proportion="0.55719554">
+        <state line="28" column="10" selection-start="0" selection-end="2564" vertical-scroll-proportion="0.27675277">
           <folding />
         </state>
       </provider>
