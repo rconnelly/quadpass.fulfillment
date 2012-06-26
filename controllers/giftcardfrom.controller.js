@@ -1,11 +1,26 @@
-module.exports.setRoutes = function(app, kit) {
+module.exports.setRoutes = function (app, kit) {
 
-    app.get('/gift-card-from/:slug', function(req, res) {
+    app.redirect('order-gift', function (req, res, next) {
         res.render('orderpage', {
             page:{
-                title: 'Order Page',
-                className: 'orderpage'
+                title:'Order Page',
+                className:'orderpage'
             }
+        });
+    });
+
+    app.get('/order-gift-from/:id', function (req, res) {
+
+        kit.yelp.business(req.params.id, function (error, data) {
+            if (error) return next(error);
+
+            res.render('orderpage', {
+                page:{
+                    title:'Order Page',
+                    className:'orderpage'
+                },
+                suggested: data
+            });
         });
     });
 

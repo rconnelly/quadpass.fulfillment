@@ -1,0 +1,12 @@
+mixin listing(business)
+    .span4.well.listing
+        a.listinglink(href='/order-gift-from/' + business.id)
+            img.listing.thumbnail(src=business.image_url, alt='')
+        strong= business.name
+        dl.address
+            if business.location.display_address
+                each line in business.location.display_address
+                    dd.line
+                        small= line
+        .rating
+            img(src=business.rating_img_url_small)

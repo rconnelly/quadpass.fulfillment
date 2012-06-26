@@ -1,11 +1,16 @@
-- var items = ["one", "two", "three","four","five","six","seven","eight"]
+include mixins/_listing.mixin.jade
 
-.thumbnails
-    each item in items
-        li.span3
-            .thumbnail
-                a(href='/gift-card-from/' + item)
-                    img(src='http://placehold.it/260x180', alt='')
-                .caption
-                    h5 Thumbnail label
-                    p Thumbnail caption here
+- var length = searchResult.businesses.length
+- for (var i = 0; i < length; i=i+3) {
+    .row-fluid
+        - for(var j = 0; j < 3 && i+j < length; j++) {
+            mixin listing(searchResult.businesses[i+j])
+        - }
+- }
+
+
+script(type='text/javascript')
+    $('.listing').click(function(){
+        var url = $(this).find('a.listinglink').attr('href');
+        document.location=url;
+    });

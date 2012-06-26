@@ -2,7 +2,7 @@
   "name": "quadpass",
   "author": "Ryan Connelly (/humans.txt)",
   "description": "Online gift cards",
-  "version": "0.0.1-17",
+  "version": "0.0.1-18",
   "main": "boot.js",
   "engines": {
     "node": "~0.6"
@@ -20,7 +20,8 @@
     "restify": "~0.5.4",
     "async": "~0.1.15",
     "jade": "~0.20.0",
-    "connect-redis": "~1.4.0"
+    "connect-redis": "~1.4.0",
+    "yelp": "~0.1.1"
   },
   "devDependencies": {
     "mocha": "*",

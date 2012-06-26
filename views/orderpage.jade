@@ -1,5 +1,7 @@
 extends layout
 
+include ./includes/mixins/_listing.mixin.jade
+
 block content
     .page-header
         h1 #{page.title}&nbsp;
@@ -52,6 +54,22 @@ block content
                             a.btn.cardvalue-500 $500
                             a.btn.cardvalue-other Other
 
+                .control-group
+                    label.control-label(for='gift[suggestion]') Suggested Experience
+                    .controls
+                        .suggestion
+                            a.listinglink(href='/order-gift-from/' + suggested.id)
+                                img.listing.thumbnail(src=suggested.image_url, alt='')
+                            strong= suggested.name
+                            dl.address
+                                if suggested.location.display_address
+                                    each line in suggested.location.display_address
+                                        dd.line
+                                            small= line
+                            .rating
+                                img(src=suggested.rating_img_url_small)
+
+
         section
             h2 3. Personalize
             .well
@@ -62,7 +80,7 @@ block content
                             - var thumbs = ['Modern','Classic','Spring','Birthday'];
                             each thumb in thumbs
                                 li
-                                    .thumbnail(href='#')
+                                    .thumbnail(href='#',style='cursor: pointer;')
                                         img(src='http://placehold.it/160x120', alt='')
                                         .caption
                                             label.radio(for='gift[theme]-'+thumb)

@@ -32,6 +32,15 @@ var log = require('restify').log;
 log.level(log.Level.Trace);
 
 
+/** Yelp **/
+
+var yelp = require("yelp").createClient({
+    consumer_key: sc.get('yelp').consumerKey
+    , consumer_secret: sc.get('yelp').consumerSecret
+    , token: sc.get('yelp').token
+    , token_secret: sc.get('yelp').tokenSecret
+});
+
 var kit = {
     model: {}
   , dateformat: require('dateformat')
@@ -39,6 +48,7 @@ var kit = {
   , log: log
   , parallelize: libMisc.parallelize
   , middleware: libMiddleware.base
+  , yelp: yelp
 };
 
 /**

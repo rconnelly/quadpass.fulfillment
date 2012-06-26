@@ -10,6 +10,9 @@ html(lang='en')
         link(type='text/plan', rel='author', href='#{meta.author.url}')
         meta(name='viewport', content='width=device-width,initial-scale=1')
 
+        style(type='text/css')
+            img.listing { float: left; margin-right: 10px; }
+
         if bootstrap
             link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')
             link(rel='stylesheet', href='/assets/style.css')
@@ -21,6 +24,12 @@ html(lang='en')
                     genTime: #{Date.now()},
                     onload: []
                   };
+
+        style(type="text/css")
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
 
     - var bodyClass = page.className + bootstrap ? ' bootstrap':''
     body(class='#{bodyClass}')

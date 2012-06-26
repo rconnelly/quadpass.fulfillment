@@ -1,9 +1,34 @@
 extends layout
 
 block content
-    #main.content
+    header
         .hero-unit
-            h1 Gift the gift of an experience
+            h1 Give the gift of an experience
             p Online Gift Cards
 
-        include includes/_locations
+    form.well(action='/gifts-for')
+        .container-fluid
+            .row-fluid
+                .control-group.span4
+                    label.control-label Business name or category
+                    .controls
+                        input.input-large.businessname(type='text',id='term',name='term',value=term.replace('+',' '))
+                        .help-block
+                            - var terms = ['restaurants','bars','nightlife']
+                            each term in terms
+                                a(href='/gifts-for/'+term) #{term}
+                                | ,
+                            | more
+
+
+                .control-group.span4
+                    label.control-label Near
+                    .controls
+                        input.input-large.location(type='text',id='location',name='location',value=location.replace('+',' '))
+                        .help-block Restaurants, bars, nightlife
+
+                .control-group.span4
+                    label &nbsp;
+                    button.btn.btn-large(type='submit') Search
+
+    include includes/_locations
