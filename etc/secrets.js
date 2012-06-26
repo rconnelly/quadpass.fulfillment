@@ -43,12 +43,19 @@ var SECRETS = {
                 consumerKey:'JLCGyLzuOK1BjnKPKGyQ', consumerSecret:'GNqKfPqtzOcsCtFbGTMqinoATHvBcy1nzCTimeA9M0'
             }
         },
-
-        yelp: {
+        // ryan.connelly@gmail.com
+        /*yelp: {
             consumerKey: 'V3LmcsEQDwzoFjUyBackmg',
             consumerSecret: 'qy87diBYhTioXfoFatIegxEaBRE',
             token: 'Q4w2l5lWkjxHDLk5kd-AIwpXEL8UnWV_',
             tokenSecret: 'PqoALKtcS2ReRRDPj9fRrusVDtg'
+        },*/
+        // ryan@quad.io
+        yelp: {
+            consumerKey: 'FreL9N_bpZKAeBVX6eeIlw',
+            consumerSecret: 'myvmS_-W4kI5fAppidZWfy-D1Y4',
+            token: 'Iyl6g9En-FRHyb0EsIOj3Zvo4jktlfbw',
+            tokenSecret: 'LNgKbUhDf9ulHYyqELJSrx-2lzM'
         }
     }
 }

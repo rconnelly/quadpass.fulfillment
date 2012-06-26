@@ -25,7 +25,7 @@ module.exports.setRoutes = function (app, kit) {
         });
     }
 
-    app.get('/', function (req, res) {
+    app.get('/', function (req, res, next) {
         var p = {
             term:req.session.term,
             location:req.session.location

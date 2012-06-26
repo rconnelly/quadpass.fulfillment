@@ -8,5 +8,8 @@ mixin listing(business)
                 each line in business.location.display_address
                     dd.line
                         small= line
+
+        if business.snippet_text
+            p "#{business.snippet_text}"
         .rating
             img(src=business.rating_img_url_small)
