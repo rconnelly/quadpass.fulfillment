@@ -16,8 +16,8 @@ module.exports.setRoutes = function (app, kit) {
             callback(error,
                 {
                     searchResult:data,
-                    term:params.term,
-                    location:params.location,
+                    term:term,
+                    location:location,
                     error:error,
                     pageCount: Math.floor(total / limit),
                     pageNumber:page

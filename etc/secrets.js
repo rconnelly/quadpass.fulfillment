@@ -48,10 +48,10 @@ var SECRETS = {
         sessionHash:'QuadPass1058234',
 
         mongoUrls:{
-          //  data:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev', // ends with slash = we append dbname based on pkg.name
-          //  sess:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev'
-            data:'mongodb://admin:pass123@localhost:27017/quad_dev', // ends with slash = we append dbname based on pkg.name
-            sess:'mongodb://admin:pass123@localhost:27017/quad_dev'
+            data:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev', // ends with slash = we append dbname based on pkg.name
+            sess:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev'
+          //  data:'mongodb://admin:pass123@localhost:27017/quad_dev', // ends with slash = we append dbname based on pkg.name
+          //  sess:'mongodb://admin:pass123@localhost:27017/quad_dev'
         },
 
         everyAuth:{
