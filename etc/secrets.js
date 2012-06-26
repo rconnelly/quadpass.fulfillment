@@ -17,8 +17,10 @@ var SECRETS = {
         sessionHash:'QuadPass1058234',
 
         mongoUrls:{
-            data:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev', // ends with slash = we append dbname based on pkg.name
-            sess:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev'
+            data: 'mongodb://nodejitsu:dab6833cd9468f3ba5d129d5706d63bb@staff.mongohq.com:10021/nodejitsudb29726924367',
+            sess: 'mongodb://nodejitsu:dab6833cd9468f3ba5d129d5706d63bb@staff.mongohq.com:10021/nodejitsudb29726924367'
+           // data:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev', // ends with slash = we append dbname based on pkg.name
+           // sess:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev'
         },
 
         everyAuth:{
@@ -48,8 +50,11 @@ var SECRETS = {
         sessionHash:'QuadPass1058234',
 
         mongoUrls:{
-            data:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev', // ends with slash = we append dbname based on pkg.name
-            sess:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev'
+
+            data: 'mongodb://nodejitsu:dab6833cd9468f3ba5d129d5706d63bb@staff.mongohq.com:10021/nodejitsudb29726924367',
+            sess: 'mongodb://nodejitsu:dab6833cd9468f3ba5d129d5706d63bb@staff.mongohq.com:10021/nodejitsudb29726924367'
+            //data:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev', // ends with slash = we append dbname based on pkg.name
+            //sess:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev'
           //  data:'mongodb://admin:pass123@localhost:27017/quad_dev', // ends with slash = we append dbname based on pkg.name
           //  sess:'mongodb://admin:pass123@localhost:27017/quad_dev'
         },
