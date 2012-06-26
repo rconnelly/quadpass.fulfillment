@@ -32,3 +32,9 @@ block content
                     button.btn.btn-large(type='submit') Search
 
     include includes/_locations
+
+    script(type='text/javascript')
+        $('.listing').live('click',function(){
+            var url = $(this).find('a.listinglink').attr('href');
+            document.location=url;
+        });

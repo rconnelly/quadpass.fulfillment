@@ -8,8 +8,10 @@ module.exports.setRoutes = function (app, kit) {
         var limit = params.limit || 18;
         var page = params.page || 1;
         var offset = (page - 1) * limit;
+        var location = params.location || "Atlanta, GA";
+        var term = params.term || 'Restaurants';
         offset = offset <= (maxCount - limit) ? offset : maxCount - limit;
-        kit.yelp.search({term:params.term, location:params.location, limit:limit, offset:offset}, function (error, data) {
+        kit.yelp.search({term:term, location:location, limit:limit, offset:offset}, function (error, data) {
             var total = (data.total > maxCount) ? maxCount : data.total
             callback(error,
                 {
@@ -25,8 +27,8 @@ module.exports.setRoutes = function (app, kit) {
 
     app.get('/', function (req, res) {
         var p = {
-            term:req.session.term || 'Restaurants',
-            location:req.session.location || 'Atlanta, GA'
+            term:req.session.term,
+            location:req.session.location
         };
 
         p.page = req.query.page;
@@ -58,7 +60,7 @@ module.exports.setRoutes = function (app, kit) {
         res.redirect('gifts-for');
     });
 
-    app.get('/gifts-for/:term/:location', function (req, res, next) {
+    app.get('/gifts-for/:term/:location?', function (req, res, next) {
         var p = req.params;
         req.session.term = p.term;
         req.session.location = p.location;

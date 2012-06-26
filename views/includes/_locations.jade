@@ -13,9 +13,10 @@ include mixins/_listing.mixin.jade
     ul
         - var prevPage = pageNumber-1;
         - var prevCls = (prevPage > 0 ) ? '' : 'disabled';
+        - var prevUrl = (prevPage > 1 ) ? '?page='+ prevPage : 'javascript:void(0)';
 
         li(class=prevCls)
-            a(href='?page='+ prevPage, class=prevCls) Prev
+            a(href=prevUrl, class=prevCls) Prev
 
         - var startPage = pageNumber - (PAGE_LINK_MAX/2);
         - var stopPage = startPage+PAGE_LINK_MAX;
@@ -30,19 +31,14 @@ include mixins/_listing.mixin.jade
 
         - for(var i = startPage; i <= stopPage; i++) {
             - var cls = (pageNumber == i) ? 'active' : '';
+            - var url = (pageNumber != i) ? '?page='+i : 'javascript:void(0)';
             li(class=cls)
-                a(href='?page='+i)= i
+                a(href=url)= i
         - }
 
         - var nextPage = pageNumber
         - nextPage++
         - var nextCls = (nextPage <= pageCount) ? '' : 'disabled';
+        - var nextUrl = (nextPage <= pageCount) ? '?page='+ nextPage : 'javascript:void(0)';
         li(class=nextCls)
-            a(href='?page='+ nextPage, class=nextCls) Next
-
-
-script(type='text/javascript')
-    $('.listing').click(function(){
-        var url = $(this).find('a.listinglink').attr('href');
-        document.location=url;
-    });
+            a(href=nextUrl, class=nextCls) Next

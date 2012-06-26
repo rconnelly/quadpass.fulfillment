@@ -4,6 +4,7 @@
     <list default="true" id="045f7848-b2b5-4ef5-aea3-8f4ebed19408" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/index.controller.js" afterPath="$PROJECT_DIR$/controllers/index.controller.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/includes/_locations.jade" afterPath="$PROJECT_DIR$/views/includes/_locations.jade" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
     </list>
     <ignored path="quadpass.fulfillment.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,6 +44,24 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="index.jade" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/index.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="0" selection-start="1268" selection-end="1268" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_locations.jade" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/includes/_locations.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="36" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.8534202">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="expressHelper.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/node_modules/mongoose-auth/node_modules/everyauth/lib/expressHelper.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -73,7 +92,7 @@
       <file leaf-file-name="index.controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/index.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="29" selection-start="816" selection-end="825" vertical-scroll-proportion="0.0">
+            <state line="62" column="40" selection-start="1976" selection-end="1976" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -92,24 +111,6 @@
         <entry file="file://$PROJECT_DIR$/lib/middleware.js">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_locations.jade" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/views/includes/_locations.jade">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="25" selection-start="1170" selection-end="1192" vertical-scroll-proportion="0.6824104">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/mongoose-auth/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="18" selection-start="730" selection-end="730" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -143,13 +144,13 @@
         <option value="$PROJECT_DIR$/views/orderpage.jade" />
         <option value="$PROJECT_DIR$/views/register.jade" />
         <option value="$PROJECT_DIR$/views/login.jade" />
-        <option value="$PROJECT_DIR$/views/index.jade" />
         <option value="$PROJECT_DIR$/views/includes/_footer.jade" />
         <option value="$PROJECT_DIR$/public/humans.txt" />
         <option value="$PROJECT_DIR$/etc/secrets.js" />
         <option value="$PROJECT_DIR$/node_modules/mongoose-auth/node_modules/everyauth/lib/expressHelper.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/controllers/index.controller.js" />
+        <option value="$PROJECT_DIR$/views/index.jade" />
         <option value="$PROJECT_DIR$/views/includes/_locations.jade" />
       </list>
     </option>
@@ -405,13 +406,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testboot.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -468,13 +462,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/mongoose-auth/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="14" selection-start="924" selection-end="924" vertical-scroll-proportion="-1.3076923">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/middleware.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -489,13 +476,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/boot.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="207" column="0" selection-start="4521" selection-end="4521" vertical-scroll-proportion="-23.692308">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="26" column="17" selection-start="632" selection-end="632" vertical-scroll-proportion="0.0">
@@ -505,14 +485,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/index.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="29" selection-start="816" selection-end="825" vertical-scroll-proportion="0.0">
+        <state line="62" column="40" selection-start="1976" selection-end="1976" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/boot.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="207" column="0" selection-start="4521" selection-end="4521" vertical-scroll-proportion="-23.692308">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/mongoose-auth/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="14" selection-start="924" selection-end="924" vertical-scroll-proportion="-1.3076923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="0" selection-start="1268" selection-end="1268" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/includes/_locations.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="25" selection-start="1170" selection-end="1192" vertical-scroll-proportion="0.6824104">
+        <state line="41" column="36" selection-start="1394" selection-end="1394" vertical-scroll-proportion="0.8534202">
           <folding />
         </state>
       </provider>
