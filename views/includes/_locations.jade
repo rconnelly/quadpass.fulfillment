@@ -8,6 +8,38 @@ include mixins/_listing.mixin.jade
         - }
 - }
 
+.pagination.pagination-centered
+    - var PAGE_LINK_MAX = 10;
+    ul
+        - var prevPage = pageNumber-1;
+        - var prevCls = (prevPage > 0 ) ? '' : 'disabled';
+
+        li(class=prevCls)
+            a(href='?page='+ prevPage, class=prevCls) Prev
+
+        - var startPage = pageNumber - (PAGE_LINK_MAX/2);
+        - var stopPage = startPage+PAGE_LINK_MAX;
+
+        - if(startPage <= 0)        {
+            - startPage = 1;
+            - stopPage = startPage + PAGE_LINK_MAX - 1;
+        - } else if (stopPage > pageCount) {
+            - stopPage = pageCount;
+            - startPage = pageCount - PAGE_LINK_MAX;
+        - }
+
+        - for(var i = startPage; i <= stopPage; i++) {
+            - var cls = (pageNumber == i) ? 'active' : '';
+            li(class=cls)
+                a(href='?page='+i)= i
+        - }
+
+        - var nextPage = pageNumber
+        - nextPage++
+        - var nextCls = (nextPage <= pageCount) ? '' : 'disabled';
+        li(class=nextCls)
+            a(href='?page='+ nextPage, class=nextCls) Next
+
 
 script(type='text/javascript')
     $('.listing').click(function(){
