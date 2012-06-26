@@ -13,6 +13,7 @@ module.exports.get = function (key) {
 
 var SECRETS = {
     production:{
+        port: 80,
         sessionHash:'QuadPass1058234',
 
         mongoUrls:{
@@ -43,6 +44,7 @@ var SECRETS = {
         }
     },
     development:{
+        port: 3000,
         sessionHash:'QuadPass1058234',
 
         mongoUrls:{

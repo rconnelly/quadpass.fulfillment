@@ -49,6 +49,7 @@ var kit = {
   , parallelize: libMisc.parallelize
   , middleware: libMiddleware.base
   , yelp: yelp
+  , port: sc.get('port')
 };
 
 /**
@@ -66,8 +67,7 @@ var m = kit.secrets.get('mongoUrls')
 /**
  * Sessions
  */
-//var MongoStore = require('connect-mongodb');
-//var RedisStore = require('connect-redis')(express);
+
 var MongoStore = require('connect-mongodb');
 kit.sessionStorage = new MongoStore({ url: MONGO_SESS_URL });
 
@@ -208,7 +208,7 @@ function up() {
     console.error("\nuncaughtException", exception);
   });
 
-  app.listen(IS_PROD ? 80 : 3000, function() {
+  app.listen(kit.port, function() {
     console.log( "%s - Listening on port %d in %s mode"
     , (new Date()).toISOString()
     , app.address().port
