@@ -2,7 +2,7 @@
   "name": "quadpass",
   "author": "Ryan Connelly (/humans.txt)",
   "description": "Online gift cards",
-  "version": "0.0.1-32",
+  "version": "0.0.1-33",
   "main": "boot.js",
   "engines": {
     "node": "~0.6"
@@ -29,6 +29,10 @@
     "should": "*"
   },
   "subdomain": "quadpass",
+   "domains": [
+        "quadpass.com",
+        "www.quadpass.com"
+   ],
   "scripts": {
     "start": "server.js"
   }
