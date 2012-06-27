@@ -11,19 +11,14 @@ block content
         h1 #{page.title}&nbsp;
             small Order gifts from your favorite places
 
-    .payment-errors.alert.alert-error.hidden
+    .payment-errors.alert.alert-error
 
     form#payment-form.form-horizontal( action="", method='post', accept-charset='utf-8')
         input(type='hidden', name='_csrf', value=req.session._csrf)
         section
             h2 Credit Card Details
             .well
-                .control-group
-                    label.control-label(for='payment[type]') Pay by
-                    .controls
-                        select.paymenttype(id='payment[type]',name='payment[type]')
-                            option(value='card') Credit Card
-                            option(value='check') Check
+
 
                 .control-group.card
                     label.control-label(for='payment[name]') Card Holder Name
@@ -59,14 +54,6 @@ block content
 
     script(type='text/javascript')
 
-        $('.check').hide();
-
-        $('.paymenttype').change(function(){
-            $('.check').toggle();
-            $('.card').toggle();
-        });
-
-
         $(document).ready(function() {
             $("#payment-form").submit(function(event) {
                 // disable the submit button to prevent repeated clicks
@@ -88,11 +75,12 @@ block content
             });
          });
 
-
+        $(".payment-errors").hide();
         var stripeResponseHandler = function(status, response) {
             if (response.error) {
                 // show the errors on the form
                 $(".payment-errors").text(response.error.message);
+                $(".payment-errors").fadeIn('fast');
                 $(".submit-button").removeAttr("disabled");
             } else {
                 var form$ = $("#payment-form");

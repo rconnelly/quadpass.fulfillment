@@ -3,13 +3,16 @@ var util = require('util')
 
 module.exports.setRoutes = function (app, kit) {
 
+    var DEFAULT_TERM = 'Restaurants';
+    var DEFAULT_LOCATION = 'Atlanta, GA';
+
     var yelpSearch = function (params, callback) {
         var maxCount = 1000; // yelp imposed limit
         var limit = params.limit || 18;
         var page = params.page || 1;
         var offset = (page - 1) * limit;
-        var location = params.location || "Atlanta, GA";
-        var term = params.term || 'Restaurants';
+        var location = params.location || DEFAULT_LOCATION;
+        var term = params.term || DEFAULT_TERM;
         offset = offset <= (maxCount - limit) ? offset : maxCount - limit;
         kit.yelp.search({term:term, location:location, limit:limit, offset:offset}, function (error, data) {
             var total = (data.total > maxCount) ? maxCount : data.total
@@ -38,8 +41,9 @@ module.exports.setRoutes = function (app, kit) {
 
             data.page = {
                 title:'QuadPass.com',
-                className:'about'
+                className:'index'
             };
+
 
             res.render('index', data);
         });
@@ -109,13 +113,35 @@ module.exports.setRoutes = function (app, kit) {
         var amount = parseInt(req.session.order.gift.amount) * 100;
         var token = req.body.stripeToken;
         stripe.charges.create({card:token,
-            description: paymentName, currency:'usd',
-                amount: amount }, function (err, charge) {
+            description:paymentName, currency:'usd',
+            amount:amount }, function (err, charge) {
             if (err)
                 next(err);
             else {
-                res.redirect('home');
-                console.debug("customer created with id:", charge.id);
+
+                var p = {
+                    term:req.session.term,
+                    location:req.session.location
+                };
+
+                p.page = req.query.page;
+
+                yelpSearch(p, function (error, data) {
+                    if (error) return next(JSON.stringify(error));
+
+                    data.page = {
+                        title:'QuadPass.com',
+                        className:'index'
+                    };
+                    data.alert = {
+                        type:'success',
+                            message:'Thanks for your order! We will build the e-card and send it to your friend shortly!'
+                    };
+
+                    res.render('index', data);
+                });
+
+                kit.log.debug("created charge with id:", charge.id);
             }
         });
     });
@@ -129,7 +155,7 @@ module.exports.setRoutes = function (app, kit) {
                 className:'payment'
             },
             publicKey:kit.stripe.publicKey,
-            defaultAccount: (kit.stripe.isTestAccount && kit.stripe.defaultAccount) ? kit.stripe.defaultAccount : {}
+            defaultAccount:(kit.stripe.isTestAccount && kit.stripe.defaultAccount) ? kit.stripe.defaultAccount : {}
         });
     });
 

@@ -80,7 +80,7 @@ block content
                             - var thumbs = ['Modern','Classic','Spring','Birthday'];
                             each thumb in thumbs
                                 li
-                                    .thumbnail(href='#',style='cursor: pointer;')
+                                    a.thumbnail(href='javascript:void(0)',style='cursor: pointer;')
                                         img(src='http://placehold.it/160x120', alt='')
                                         .caption
                                             label.radio(for='gift[theme]-'+thumb)
@@ -90,19 +90,26 @@ block content
                 .control-group
                     label.control-label(for='gift[amount]') Personal Message
                     .controls
-                        textarea.input-xlarge(id='gift[message]',name='gift[message]',rows='5')
+                        textarea(id='gift[message]',name='gift[message]',rows='7',style='display:block; margin: 0; padding:0; width: 100%')
                 .control-group
                     label.control-label(for='gift[amount]') Upload a Video
                     .controls
                         input(type='file')
 
+                .preview
+                    h2 Gift Card Preview
+                    ul.thumbnails
+                        li
+                            .thumbnail
+                                img(src='http://placehold.it/900x600', alt='')
+
         .form-actions.well
-            input.btn.btn-large.btn-primary(type='submit',value='Next')
+            input.btn-next.btn.btn-large.btn-primary.pull-right(type='submit',value='Next')
 
 
     script(type='text/javascript')
-        $('.theme li img').click(function(){
-            $(this).siblings('.caption').find('input[type="radio"]').attr('checked',true);
+        $('.theme li a.thumbnail').click(function(){
+            $(this).find('input[type="radio"]').attr('checked',true);
         });
 
         $('.cardvalue a').click(function(){

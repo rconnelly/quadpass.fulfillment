@@ -2,15 +2,17 @@ extends layout
 
 block content
     header.hero-unit
-
         h1 Give an experience.
         p.lead Flexible, secure online gift cards for any occassion.
+
+    if typeof(alert) != 'undefined'
+        .alert(class='alert-'+alert.type) #{alert.message}
 
     form.well(action='/gifts-for')
         .container-fluid
             .row-fluid
                 .control-group.span4
-                    label.control-label Business name or category
+                    label.control-label What are you looking for?
                     .controls
                         input.input-large.businessname(type='text',id='term',name='term',value=term.replace('+',' '))
                         .help-block
