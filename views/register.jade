@@ -40,20 +40,22 @@ block content
                 a.btn.btn-large(id='twitter-btn',href='/auth/twitter') Twitter
                 a.btn.btn-large(id='google-btn',href='/auth/google') Google
 
-    script(type='text/javascript', charset='utf-8')
-        CLIENTAPP.onload.push(function() {
 
-        // convert everyauth errors array to flash messages
-        (function(errors) {
+    if typeof errors != 'undefined'
+        script(type='text/javascript', charset='utf-8')
+            CLIENTAPP.onload.push(function() {
 
-          if(errors.length) {
-            for (var i=0; i < errors.length; i++) {
-              flashMessage('error', errors[i], true);
-            };
-          }
+            // convert everyauth errors array to flash messages
+            (function(errors) {
 
-        })(!{JSON.stringify(errors)});
+              if(errors.length) {
+                for (var i=0; i < errors.length; i++) {
+                  flashMessage('error', errors[i], true);
+                };
+              }
 
-        });
+            })(!{JSON.stringify(errors)});
+
+            });
 
 

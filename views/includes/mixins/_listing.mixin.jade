@@ -2,12 +2,14 @@ mixin listing(business)
     .span4.well.listing
         a.listinglink(href='/order-gift-from/' + business.id)
             img.listing.thumbnail(src=business.image_url, alt='')
-        strong= business.name
-        dl.address
+        address
+            strong= business.name
             if business.location.display_address
                 each line in business.location.display_address
-                    dd.line
-                        small= line
+                    br
+                    | #{line}
+
+
 
         if business.snippet_text
             p "#{business.snippet_text}"

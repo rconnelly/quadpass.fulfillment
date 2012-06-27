@@ -34,7 +34,7 @@ block content
         section
             h2 2. Gift Details
             .well
-                .control-group
+                .control-group.giftAmountGroup
                     label.control-label(for='gift[amount]') Gift Amount
                     .controls
                         .input-prepend.input-append
@@ -45,6 +45,7 @@ block content
                 .control-group
                     .controls
                         div.btn-group.cardvalue(data-toggle='buttons-radio')
+                            a.btn.cardvalue-0 None
                             a.btn.cardvalue-25 $25
                             a.btn.cardvalue-35 $35
                             a.btn.cardvalue-50 $50
@@ -116,11 +117,17 @@ block content
             var value = $.trim($(this).text()).replace('$','');
             if(value == 'Other')
             {
+                $('.giftAmountGroup').show();
                 $('.giftamount').val('');
                 $('.giftamount').focus();
             }
+            else if(value == 'None')
+            {
+                $('.giftAmountGroup').hide();
+            }
             else
             {
+                $('.giftAmountGroup').show();
                 $('.giftamount').val(value);
             }
         });
