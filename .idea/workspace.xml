@@ -3,12 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="045f7848-b2b5-4ef5-aea3-8f4ebed19408" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/index.controller.js" afterPath="$PROJECT_DIR$/controllers/index.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/etc/secrets.js" afterPath="$PROJECT_DIR$/etc/secrets.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.jade" afterPath="$PROJECT_DIR$/views/layout.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/orderpage.jade" afterPath="$PROJECT_DIR$/views/orderpage.jade" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/payment.jade" afterPath="$PROJECT_DIR$/views/payment.jade" />
     </list>
     <ignored path="quadpass.fulfillment.iws" />
@@ -31,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.controller.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.controller.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/index.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="46" selection-start="499" selection-end="511" vertical-scroll-proportion="0.3338633">
+            <state line="14" column="46" selection-start="499" selection-end="511" vertical-scroll-proportion="-8.076923">
               <folding />
             </state>
           </provider>
@@ -61,16 +57,7 @@
       <file leaf-file-name="payment.jade" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/payment.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="50" selection-start="3202" selection-end="3202" vertical-scroll-proportion="-12.461538">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="boot.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/boot.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="151" column="21" selection-start="4018" selection-end="4018" vertical-scroll-proportion="0.0">
+            <state line="51" column="44" selection-start="2039" selection-end="2039" vertical-scroll-proportion="-14.961538">
               <folding />
             </state>
           </provider>
@@ -103,10 +90,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.jade" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="_listing.mixin.jade" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/includes/mixins/_listing.mixin.jade">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="23" selection-start="40" selection-end="47" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.jade" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/layout.jade">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="0" selection-start="1414" selection-end="1414" vertical-scroll-proportion="-13.846154">
+            <state line="39" column="15" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.7138315">
               <folding />
             </state>
           </provider>
@@ -149,14 +145,14 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/views/includes/mixins/_pagination.mixin.jade" />
         <option value="$PROJECT_DIR$/views/includes/_locations.jade" />
-        <option value="$PROJECT_DIR$/views/includes/mixins/_listing.mixin.jade" />
         <option value="$PROJECT_DIR$/boot.js" />
         <option value="$PROJECT_DIR$/etc/secrets.js" />
         <option value="$PROJECT_DIR$/views/index.jade" />
         <option value="$PROJECT_DIR$/views/orderpage.jade" />
-        <option value="$PROJECT_DIR$/views/layout.jade" />
-        <option value="$PROJECT_DIR$/views/payment.jade" />
         <option value="$PROJECT_DIR$/controllers/index.controller.js" />
+        <option value="$PROJECT_DIR$/views/payment.jade" />
+        <option value="$PROJECT_DIR$/views/includes/mixins/_listing.mixin.jade" />
+        <option value="$PROJECT_DIR$/views/layout.jade" />
       </list>
     </option>
   </component>
@@ -368,7 +364,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14102565" sideWeight="0.68958545" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31041455" sideWeight="0.9987639" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31041455" sideWeight="0.9987639" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25379172" sideWeight="0.9983974" order="2" side_tool="false" content_ui="tabs" />
@@ -461,13 +457,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/includes/mixins/_listing.mixin.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="25" selection-start="490" selection-end="502" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="276" column="0" selection-start="5479" selection-end="5479" vertical-scroll-proportion="0.33179724">
@@ -496,20 +485,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/etc/secrets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="0" selection-start="4884" selection-end="4884" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/includes/_locations.jade">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/includes/mixins/_pagination.mixin.jade">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="0" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.0">
@@ -531,23 +506,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/layout.jade">
+    <entry file="file://$PROJECT_DIR$/controllers/index.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1414" selection-end="1414" vertical-scroll-proportion="-13.846154">
+        <state line="14" column="46" selection-start="499" selection-end="511" vertical-scroll-proportion="-8.076923">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/etc/secrets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="0" selection-start="4884" selection-end="4884" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/payment.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="50" selection-start="3202" selection-end="3202" vertical-scroll-proportion="-12.461538">
+        <state line="51" column="44" selection-start="2039" selection-end="2039" vertical-scroll-proportion="-14.961538">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/index.controller.js">
+    <entry file="file://$PROJECT_DIR$/views/includes/_locations.jade">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="46" selection-start="499" selection-end="511" vertical-scroll-proportion="0.3338633">
+        <state line="10" column="0" selection-start="301" selection-end="301" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/includes/mixins/_listing.mixin.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="23" selection-start="40" selection-end="47" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/layout.jade">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="15" selection-start="1331" selection-end="1331" vertical-scroll-proportion="0.7138315">
           <folding />
         </state>
       </provider>
