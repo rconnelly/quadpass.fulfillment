@@ -40,7 +40,14 @@ var yelp = require("yelp").createClient({
 });
 
 var kit = {
-    model:{}, dateformat:require('dateformat'), secrets:sc, log:log, parallelize:libMisc.parallelize, middleware:libMiddleware.base, yelp:yelp, port:sc.get('port')
+    model:{}, dateformat:require('dateformat'),
+    secrets:sc,
+    log:log,
+    parallelize:libMisc.parallelize,
+    middleware:libMiddleware.base,
+    yelp:yelp,
+    port:sc.get('port'),
+    stripe: sc.get('stripe')
 };
 
 /**

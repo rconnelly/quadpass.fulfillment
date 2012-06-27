@@ -1,0 +1,107 @@
+extends layout
+
+block headerContent
+    script(type='text/javascript', src='https://js.stripe.com/v1/')
+    script(type='text/javascript')
+        Stripe.setPublishableKey('#{publicKey}');
+
+
+block content
+    .page-header
+        h1 #{page.title}&nbsp;
+            small Order gifts from your favorite places
+
+    .payment-errors.alert.alert-error.hidden
+
+    form#payment-form.form-horizontal( action="", method='post', accept-charset='utf-8')
+        input(type='hidden', name='_csrf', value=req.session._csrf)
+        section
+            h2 Credit Card Details
+            .well
+                .control-group
+                    label.control-label(for='payment[type]') Pay by
+                    .controls
+                        select.paymenttype(id='payment[type]',name='payment[type]')
+                            option(value='card') Credit Card
+                            option(value='check') Check
+
+                .control-group.card
+                    label.control-label(for='payment[name]') Card Holder Name
+                    .controls
+                        input.input-large(type='text',id='payment[ccname]',name='payment[ccname]'
+                            , required)
+
+                .control-group.card
+                    label.control-label(for='payment[ccnum]') Account
+                    .controls
+                        .input-prepend
+                            span.add-on number
+                            input.input-large.card-number(type='text',id='payment[ccnum]'
+                                , value=defaultAccount.ccnum, required)
+
+                            span.add-on exp
+                            input.input-mini.card-expiry-month-year(type='text',id='payment[exp]'
+                                , placeholder='mm/yyyy'
+                                , pattern='^((0[1-9])|(1[0-2]))\/((2012)|(20[1-2][0-9]))$'
+                                , required
+                                ,value=defaultAccount.exp)
+
+                            span.add-on cvc
+                            input.input-mini.cvc(type='text',id='payment[cvv]'
+                                , placeholder=''
+                                , pattern='[0-9]{3,4}'
+                                , required
+                                , value=defaultAccount.cvc)
+
+        .form-actions.well
+            input.btn.btn-large.btn-primary.submit-button(type='submit',value='Send Gift')
+
+
+    script(type='text/javascript')
+
+        $('.check').hide();
+
+        $('.paymenttype').change(function(){
+            $('.check').toggle();
+            $('.card').toggle();
+        });
+
+
+        $(document).ready(function() {
+            $("#payment-form").submit(function(event) {
+                // disable the submit button to prevent repeated clicks
+                $('.submit-button').attr("disabled", "disabled");
+
+                var monthYear = $('.card-expiry-month-year').val().split('/');
+                var month = monthYear[0];
+                var year = monthYear[1];
+
+                Stripe.createToken({
+                    number: $('.card-number').val(),
+                    cvc: $('.cvc').val(),
+                    exp_month: month,
+                    exp_year: year
+            }, stripeResponseHandler);
+
+                // prevent the form from submitting with the default action
+                return false;
+            });
+         });
+
+
+        var stripeResponseHandler = function(status, response) {
+            if (response.error) {
+                // show the errors on the form
+                $(".payment-errors").text(response.error.message);
+                $(".submit-button").removeAttr("disabled");
+            } else {
+                var form$ = $("#payment-form");
+                // token contains id, last4, and card type
+                var token = response['id'];
+                // insert the token into the form so it gets submitted to the server
+                form$.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                // call submit directly (prevent infinite loop)
+                form$.get(0).submit();
+            }
+        }
+

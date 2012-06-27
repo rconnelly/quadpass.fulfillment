@@ -43,6 +43,11 @@ var SECRETS = {
             consumerSecret:'myvmS_-W4kI5fAppidZWfy-D1Y4',
             token:'Iyl6g9En-FRHyb0EsIOj3Zvo4jktlfbw',
             tokenSecret:'LNgKbUhDf9ulHYyqELJSrx-2lzM'
+        },
+        stripe: {
+            publicKey: 'pk_vrY9IoQaCla49cnwc5J1RuwLZAYUb',
+            privateKey: 'qujiolVIQuL1DrfgHFv4xkPQ6VnIXJOP',
+            isTestAccount: true
         }
     },
     development:{
@@ -51,12 +56,12 @@ var SECRETS = {
 
         mongoUrls:{
 
-            data: 'mongodb://nodejitsu:dab6833cd9468f3ba5d129d5706d63bb@staff.mongohq.com:10021/nodejitsudb29726924367',
-            sess: 'mongodb://nodejitsu:dab6833cd9468f3ba5d129d5706d63bb@staff.mongohq.com:10021/nodejitsudb29726924367'
+            //data: 'mongodb://nodejitsu:dab6833cd9468f3ba5d129d5706d63bb@staff.mongohq.com:10021/nodejitsudb29726924367',
+            //sess: 'mongodb://nodejitsu:dab6833cd9468f3ba5d129d5706d63bb@staff.mongohq.com:10021/nodejitsudb29726924367'
             //data:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev', // ends with slash = we append dbname based on pkg.name
             //sess:'mongodb://quadio_dev:password@staff.mongohq.com:10046/quad_dev'
-          //  data:'mongodb://admin:pass123@localhost:27017/quad_dev', // ends with slash = we append dbname based on pkg.name
-          //  sess:'mongodb://admin:pass123@localhost:27017/quad_dev'
+            data:'mongodb://admin:pass123@localhost:27017/quad_dev', // ends with slash = we append dbname based on pkg.name
+            sess:'mongodb://admin:pass123@localhost:27017/quad_dev'
         },
 
         everyAuth:{
@@ -79,6 +84,17 @@ var SECRETS = {
             consumerSecret:'myvmS_-W4kI5fAppidZWfy-D1Y4',
             token:'Iyl6g9En-FRHyb0EsIOj3Zvo4jktlfbw',
             tokenSecret:'LNgKbUhDf9ulHYyqELJSrx-2lzM'
+        },
+        stripe: {
+            publicKey: 'pk_vrY9IoQaCla49cnwc5J1RuwLZAYUb',
+            privateKey: 'qujiolVIQuL1DrfgHFv4xkPQ6VnIXJOP',
+            defaultAccount:
+                {
+                    ccnum: '4242424242424242',
+                    exp: '05/2025',
+                    cvc: '123'
+                },
+            isTestAccount: true
         }
     }
 }

@@ -1,0 +1,36 @@
+mixin pagination(currentPageNumber, pageCount)
+    - var pageNumber = currentPageNumber;
+    .pagination.pagination-centered
+        - var PAGE_LINK_MAX = 10;
+        ul
+            - var prevPage = pageNumber-1;
+            - var prevCls = (prevPage > 0 ) ? '' : 'disabled';
+            - var prevUrl = (prevPage > 1 ) ? '?page='+ prevPage : 'javascript:void(0)';
+
+            li(class=prevCls)
+                a(href=prevUrl, class=prevCls) Prev
+
+            - var startPage = pageNumber - (PAGE_LINK_MAX/2);
+            - var stopPage = startPage+PAGE_LINK_MAX;
+
+            - if(startPage <= 0)        {
+                - startPage = 1;
+                - stopPage = startPage + PAGE_LINK_MAX - 1;
+            - } else if (stopPage > pageCount) {
+                - stopPage = pageCount;
+                - startPage = pageCount - PAGE_LINK_MAX;
+            - }
+
+            - for(var i = startPage; i <= stopPage; i++) {
+                - var cls = (pageNumber == i) ? 'active' : '';
+                - var url = (pageNumber != i) ? '?page='+i : 'javascript:void(0)';
+                li(class=cls)
+                    a(href=url)= i
+            - }
+
+            - var nextPage = pageNumber
+            - nextPage++
+            - var nextCls = (nextPage <= pageCount) ? '' : 'disabled';
+            - var nextUrl = (nextPage <= pageCount) ? '?page='+ nextPage : 'javascript:void(0)';
+            li(class=nextCls)
+                a(href=nextUrl, class=nextCls) Next

@@ -35,7 +35,8 @@ block content
                     label &nbsp;
                     button.btn.btn-large(type='submit') Search
 
-    include includes/_locations
+    section.items
+        include includes/_locations
 
     script(type='text/javascript')
         $('.listing').live('click',function(){

@@ -10,8 +10,11 @@ html(lang='en')
         link(type='text/plan', rel='author', href='#{meta.author.url}')
         meta(name='viewport', content='width=device-width,initial-scale=1')
 
+        block headerContent
+
         style(type='text/css')
             img.listing { float: left; margin-right: 10px; }
+            .listing span.review_count { display: block; float: right; }
 
         if bootstrap
             link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')

@@ -11,5 +11,8 @@ mixin listing(business)
 
         if business.snippet_text
             p "#{business.snippet_text}"
+
+        span.review_count
+            a(href=business.url) #{business.review_count} reviews
         .rating
             img(src=business.rating_img_url_small)

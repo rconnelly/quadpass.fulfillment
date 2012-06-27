@@ -19,7 +19,7 @@ module.exports.setRoutes = function (app, kit) {
                     term:term,
                     location:location,
                     error:error,
-                    pageCount: Math.floor(total / limit),
+                    pageCount:Math.floor(total / limit),
                     pageNumber:page
                 });
         });
@@ -56,8 +56,21 @@ module.exports.setRoutes = function (app, kit) {
             return util.format('/gifts-for/%s/%s', req.query.term, req.query.location);
     });
 
+    app.redirect('home', function (req, res) {
+        return '/';
+    });
+
+    app.redirect('payment', function (req, res) {
+        return '/payment';
+    });
+
     app.get('/gifts-for', function (req, res, next) {
         res.redirect('gifts-for');
+    });
+
+    app.post('/orderpage', function (req, res, next) {
+        req.session.order = req.body;
+        res.redirect('payment');
     });
 
     app.get('/gifts-for/:term/:location?', function (req, res, next) {
@@ -80,10 +93,45 @@ module.exports.setRoutes = function (app, kit) {
 
     });
 
-    app.get('/bad', function (req, res) {
-        omgWtfBbq(); // undefined
+    app.get('/partial/gifts-for/:term/:location', function (req, res, next) {
+        var p = req.params;
+        p.page = req.query.page;
+        yelpSearch(p, function (error, data) {
+            if (error) return next(JSON.stringify(error));
+            res.render('includes/_locations', data);
+        });
+    });
+
+    app.post('/payment', function (req, res, next) {
+        var api_key = kit.stripe.privateKey;
+        var stripe = require('stripe')(api_key);
+        var paymentName = req.body.payment.ccname;
+        var amount = parseInt(req.session.order.gift.amount) * 100;
+        var token = req.body.stripeToken;
+        stripe.charges.create({card:token,
+            description: paymentName, currency:'usd',
+                amount: amount }, function (err, charge) {
+            if (err)
+                next(err);
+            else {
+                res.redirect('home');
+                console.debug("customer created with id:", charge.id);
+            }
+        });
+    });
+
+    app.get('/payment', function (req, res, next) {
+        var p = req.params;
+        p.page = req.query.page;
+        res.render('payment', {
+            page:{
+                title:'Payment',
+                className:'payment'
+            },
+            publicKey:kit.stripe.publicKey,
+            defaultAccount: (kit.stripe.isTestAccount && kit.stripe.defaultAccount) ? kit.stripe.defaultAccount : {}
+        });
     });
 
     return app;
 }
-

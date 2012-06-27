@@ -11,7 +11,7 @@ block content
         input(type='hidden', name='_csrf', value=req.session._csrf)
 
         section
-            h2 1. Recipient
+            h2 1. Who gets it?
             .well
                 .control-group
                     label.control-label(for='recipient[name]') Full Name
@@ -39,7 +39,7 @@ block content
                     .controls
                         .input-prepend.input-append
                             span.add-on $
-                            input.input-mini.giftamount(style='text-align: right',id='gift[amount]',name='gift[amount]',type='text',disabled,required,pattern="[0-9]+")
+                            input.input-mini.giftamount(style='text-align: right',id='gift[amount]',name='gift[amount]',type='text', required,pattern="[0-9]+")
                             span.add-on .00
 
                 .control-group
@@ -95,57 +95,9 @@ block content
                     label.control-label(for='gift[amount]') Upload a Video
                     .controls
                         input(type='file')
-        section
-            h2 4. Payment
-            .well
-                .control-group
-                    label.control-label(for='payment[type]') Pay by
-                    .controls
-                        select.paymenttype(id='payment[type]',name='payment[type]')
-                            option(value='card') Credit Card
-                            option(value='check') Check
-
-                .control-group.card
-                    label.control-label(for='payment[name]') Name
-                    .controls
-                        input.input-large(type='text',id='payment[ccnum]',name='payment[ccnum]'
-                            , required)
-
-                .control-group.card
-                    label.control-label(for='payment[ccnum]') Account
-                    .controls
-                        .input-prepend
-                            span.add-on number
-                            input.input-large(type='text',id='payment[ccnum]',name='payment[ccnum]'
-                                , required)
-
-                            span.add-on exp
-                            input.input-mini(type='text',id='payment[exp]',name='payment[exp]'
-                                , placeholder='mm/yyyy'
-                                , pattern='^((0[1-9])|(1[0-2]))\/((2012)|(20[1-2][0-9]))$'
-                                , required)
-
-                            span.add-on cvv
-                            input.input-mini(type='text',id='payment[exp]',name='payment[cvv]'
-                                , placeholder=''
-                                , pattern='[0-9]{3,4}'
-                                , required)
-
-                .control-group.check
-                    label.control-label(for='payment[routingnum]') Check
-                    .controls
-                        .input-prepend
-                            span.add-on routing #
-                            input.input-medium(type='text',id='payment[routingnum]',name='payment[routingnum]')
-
-                            span.add-on account #
-                            input.input-medium(type='text',id='payment[accountnum]',name='payment[accountnum]')
-
-                            span.add-on check #
-                            input.input-small(type='text',id='payment[checknum]',name='payment[checknum]')
 
         .form-actions.well
-            input.btn.btn-large.btn-primary(type='submit',value='Send')
+            input.btn.btn-large.btn-primary(type='submit',value='Next')
 
 
     script(type='text/javascript')
@@ -153,25 +105,17 @@ block content
             $(this).siblings('.caption').find('input[type="radio"]').attr('checked',true);
         });
 
-        $('.check').hide();
-
-        $('.paymenttype').change(function(){
-            $('.check').toggle();
-            $('.card').toggle();
-        });
-
         $('.cardvalue a').click(function(){
             var value = $.trim($(this).text()).replace('$','');
             if(value == 'Other')
             {
                 $('.giftamount').val('');
-                $('.giftamount').removeAttr('disabled');
                 $('.giftamount').focus();
             }
             else
             {
-                $('.giftamount').attr('disabled', 'disabled');
                 $('.giftamount').val(value);
             }
         });
+
 
