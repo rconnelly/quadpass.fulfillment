@@ -38,19 +38,20 @@ var SECRETS = {
          tokenSecret: 'PqoALKtcS2ReRRDPj9fRrusVDtg'
          },*/
         // hello@quad.io
+        /*
         yelp: {
             consumerKey: 'FxSU5voRk9tvFWQ2u8yP8w',
             consumerSecret: 'RtnznbOXNEkO3OWHhgbT2UM2cEs',
             token: '3IAlLCK6fxXJ3_3Aefa0Cfry9WlEztCk',
             tokenSecret: 'ERpuemPjISEYTqQonkcZylraYl4'
-        },
+        },*/
         // ryan@quad.io
-        /*yelp:{
+        yelp:{
             consumerKey:'FreL9N_bpZKAeBVX6eeIlw',
             consumerSecret:'myvmS_-W4kI5fAppidZWfy-D1Y4',
             token:'Iyl6g9En-FRHyb0EsIOj3Zvo4jktlfbw',
             tokenSecret:'LNgKbUhDf9ulHYyqELJSrx-2lzM'
-        },*/
+        },
         stripe: {
             publicKey: 'pk_vrY9IoQaCla49cnwc5J1RuwLZAYUb',
             privateKey: 'qujiolVIQuL1DrfgHFv4xkPQ6VnIXJOP',
@@ -91,19 +92,20 @@ var SECRETS = {
             tokenSecret: 'PqoALKtcS2ReRRDPj9fRrusVDtg'
         },*/
         // hello@quad.io
+        /*
          yelp: {
          consumerKey: 'FxSU5voRk9tvFWQ2u8yP8w',
          consumerSecret: 'RtnznbOXNEkO3OWHhgbT2UM2cEs',
          token: '3IAlLCK6fxXJ3_3Aefa0Cfry9WlEztCk',
          tokenSecret: 'ERpuemPjISEYTqQonkcZylraYl4'
-         },
+         },*/
         // ryan@quad.io
-        /*yelp:{
+        yelp:{
          consumerKey:'FreL9N_bpZKAeBVX6eeIlw',
          consumerSecret:'myvmS_-W4kI5fAppidZWfy-D1Y4',
          token:'Iyl6g9En-FRHyb0EsIOj3Zvo4jktlfbw',
          tokenSecret:'LNgKbUhDf9ulHYyqELJSrx-2lzM'
-         },*/
+         },
         stripe: {
             publicKey: 'pk_vrY9IoQaCla49cnwc5J1RuwLZAYUb',
             privateKey: 'qujiolVIQuL1DrfgHFv4xkPQ6VnIXJOP',
