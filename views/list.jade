@@ -1,0 +1,23 @@
+extends layout
+
+block navBar
+    include includes/_navbar
+
+block content
+    header.hero-unit
+        h1 Give an experience.
+        p.lead Flexible, secure online gift cards for any occassion.
+
+    if typeof(alert) != 'undefined'
+        .alert(class='alert-'+alert.type) #{alert.message}
+
+    include includes/_searchbar
+
+    section.items
+        include includes/_locations
+
+    script(type='text/javascript')
+        $('.listing').live('click',function(){
+            var url = $(this).find('a.listinglink').attr('href');
+            document.location=url;
+        });

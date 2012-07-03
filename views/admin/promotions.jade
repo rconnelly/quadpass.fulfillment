@@ -1,0 +1,125 @@
+extends layout
+
+block content
+    header.page-header
+        h1 Promotions
+        p Lorem ipsum
+
+    if typeof(alert) != 'undefined'
+            .alert(class='alert-'+alert.type) #{alert.message}
+
+    section.main
+        div.add
+
+        form
+            a.btn.pull-right.create-dlg-btn(href='#') Add
+            div.list
+                table.table.table-striped.grid#promotionGrid
+
+
+    .modal#create-dlg.hide.fade
+        .modal-header
+            button.close(type='button', data-dismiss='modal') x
+            h3 Add a Promotion
+        .modal-body
+                ul.nav.nav-pills
+                    li.active
+                        a(href='#search',data-toggle='tab') Step 1: Find a business
+                    li
+                        a(href='#edit',data-toggle='tab') Step 2: Setup Promotion
+
+                .tabbable.tabs-left#promotion-tabs
+                    .tab-content
+                        .tab-pane.fade.in.active#search
+
+                            form.form-search.well#promotionBizSearch
+                                input.input-medium(type='text', id='term',name='term', placeholder='Business name')
+                                input.input-medium(type='text', id='location',name='location', placeholder='Location')
+                                | &nbsp;
+                                input.btn.search-btn(type='submit', value='Search')
+
+                            .businessSearch
+                                table.table.table-striped#businessSearchGrid
+
+                        .tab-pane.fade#edit
+                            .control-group
+                                label.control-label(for='a') Input Label 1
+                                .controls
+                                    input.input-xlarge(id='a',name='a')
+
+        .modal-footer
+            a.btn.btn-large.hide#btn-prev Back
+            a.btn.btn-large.hide.btn-primary#btn-next Save
+
+block javascriptFooter
+    script(type='text/javascript')
+        var view = new PromotionView();
+        var promotions = new Promotions();
+        var cols = [{title:'Name', template:'{{ name }}'}, {title:'Id', template:'{{ locationId }}'}];
+        var g = new GridView({el: $('#promotionGrid'), model:promotions, columns:cols});
+
+        promotions.fetch();
+
+        var businesses = new Businesses();
+
+        var tpl = '<strong>{{ name }}</strong> - {{ location.address }}, {{ location.city }}, {{ location.state_code }}';
+        var cols2 = [{title:'Results', template:tpl}, {title:'', template:'<input type="radio" name="selectedBusiness" class="radio business-radio" />'}];
+        var bizSearchGrid = new GridView({el: $('#businessSearchGrid'), model:businesses, columns: cols2,
+            footer: { template: '<button class="btn btn-large btn-inverse load-more">Load More</button>' }});
+
+        $('#promotionBizSearch').submit(function(e){
+            e.preventDefault();
+            $(this).addClass('disabled');
+            var d = {data: {term: $('#term').val(), location: $('#location').val()}};
+            businesses.search(d);
+        });
+
+        businesses.on('loadmore',function(searchRequest){
+            businesses.search(searchRequest);
+        });
+
+        bizSearchGrid.on('grid:selected',function(args){
+            //args.model
+            $(args.targetRow).find('.radio').attr('checked','checked');
+
+            $('#create-dlg li.active').next().find('a').tab('show');
+        });
+
+        $('.create-dlg-btn').click(function(evt){
+            $('#create-dlg').modal({backdrop: 'static'});
+        });
+
+        $('#btn-close').click(function (e) {
+          e.preventDefault();
+          //$(this).next().tab('show');
+        });
+
+        $('#btn-next').click(function (e) {
+            e.preventDefault();
+            $('#create-dlg li.active').next().find('a').tab('show');
+        });
+
+        $('#btn-prev').click(function (e) {
+            e.preventDefault();
+            $('#create-dlg li.active').prev().find('a').tab('show');
+        });
+        $('.nav-pills a').click(function(e) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+        });
+
+        $('a[data-toggle="tab"]').on('shown', function (e) {
+          if($('#edit').hasClass('active'))
+          {
+              $('#btn-prev').removeClass('hide');
+              $('#btn-next').removeClass('hide');
+          }
+          else
+          {
+              $('#btn-prev').addClass('hide');
+              $('#btn-next').addClass('hide');
+          }
+          console.log(e.target); // activated tab
+          console.log(e.relatedTarget); // previous tab
+        })
+

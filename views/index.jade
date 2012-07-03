@@ -1,47 +1,32 @@
 extends layout
 
+block navBar
+    include includes/_navbar
+
 block content
-    header.hero-unit
+    .hero-unit.header
         h1 Give an experience.
-        p.lead Flexible, secure online gift cards for any occassion.
+        p lead Send your family or friends the gift of experience. For free.
+            a.btn.btn-large.btn-info.pull-right(href='/gifts-for/adventure')
+                strong Discover an experience
+                | &nbsp;
+                i.icon-chevron-right.icon-white
 
     if typeof(alert) != 'undefined'
         .alert(class='alert-'+alert.type) #{alert.message}
 
-    form.well(action='/gifts-for')
-        .container-fluid
-            .row-fluid
-                .control-group.span4
-                    label.control-label What are you looking for?
-                    .controls
-                        input.input-large.businessname(type='text',id='term',name='term',value=term.replace('+',' '))
-                        .help-block
-                            - var terms = ['restaurants','bars','nightlife']
-                            each term in terms
-                                a(href='/gifts-for/'+term) #{term}
-                                | ,
-                            | more
+    .page-header
+        h1 Popular Gift Ideas
+        p Cool ideas that are crowd pleasers!
 
+    .page-header
+        h1 Promoted
+        p Experience for less. Give it and get the discount!
 
-                .control-group.span4
-                    label.control-label Near
-                    .controls
-                        input.input-large.location(type='text',id='location',name='location',value=location.replace('+',' '))
-                        .help-block
-                            a(href='') San Francisco
-                            | ,
-                            a(href='') Atlanta
-                            | ,
-
-                .control-group.span4
-                    label &nbsp;
-                    button.btn.btn-large(type='submit') Search
-
-    section.items
-        include includes/_locations
-
+block javascriptFooter
     script(type='text/javascript')
         $('.listing').live('click',function(){
             var url = $(this).find('a.listinglink').attr('href');
             document.location=url;
         });
+

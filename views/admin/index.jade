@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    header.page-header
+        h1 Dashboard
+        p Lorem ipsum
+
+    if typeof(alert) != 'undefined'
+            .alert(class='alert-'+alert.type) #{alert.message}
+
+block javascriptFooter
+    script(type='text/javascript')
+        $('.listing').live('click',function(){
+            var url = $(this).find('a.listinglink').attr('href');
+            document.location=url;
+        });
+
+

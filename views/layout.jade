@@ -12,15 +12,7 @@ html(lang='en')
 
         block headerContent
 
-        style(type='text/css')
-            img.listing { float: left; margin-right: 10px; }
-            .listing span.review_count { display: block; float: right; }
 
-        if bootstrap
-            link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')
-            link(rel='stylesheet', href='/assets/style.css')
-        each ss in stylesheets
-                link(rel='stylesheet', href=ss)
 
         script
                 window.CLIENTAPP = {
@@ -28,30 +20,18 @@ html(lang='en')
                     onload: []
                   };
 
-        style(type="text/css")
-            body {
-                padding-top: 60px;
-                padding-bottom: 40px;
-            }
-            .btn-next {
-                width: 150px !important;
-            }
-
-            div.listing
-            {
-                cursor: pointer;
-            }
-
-            div.listing:hover
-            {
-                border-color: #08C;
-            }
+        if bootstrap
+            link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')
+            link(rel='stylesheet', href='/assets/style.css')
+        each ss in stylesheets
+                link(rel='stylesheet', href=ss)
 
     - var bodyClass = page.className + bootstrap ? ' bootstrap':''
     body(class='#{bodyClass}')
 
-        if bootstrap
-            include includes/_navbar
+
+        block navBar
+
 
         if jquery
             script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
@@ -139,6 +119,8 @@ html(lang='en')
 
         each script in scripts
             script(src=script)
+
+        block javascriptFooter
 
         script
             (function(o) {

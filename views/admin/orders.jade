@@ -1,0 +1,60 @@
+extends layout
+
+block content
+    header.page-header
+        h1 Promotions
+        p Lorem ipsum
+
+    if typeof(alert) != 'undefined'
+            .alert(class='alert-'+alert.type) #{alert.message}
+
+    section.main
+        div.add
+
+        form
+            a.btn.pull-right.create-dlg-btn(href='#') Add
+            div.list
+                table.table.table-striped.grid#promotionGrid
+
+
+    .modal#create-dlg.hide.fade
+        .modal-header
+            button.close(type='button', data-dismiss='modal') x
+            h3 Add a Promotion
+        .modal-body
+                ul.nav.nav-pills
+                    li.active
+                        a(href='#search',data-toggle='tab') Step 1: Find a business
+                    li
+                        a(href='#edit',data-toggle='tab') Step 2: Setup Promotion
+
+                .tabbable.tabs-left#promotion-tabs
+                    .tab-content
+                        .tab-pane.fade.in.active#search
+
+                            form.form-search.well#promotionBizSearch
+                                input.input-medium(type='text', id='term',name='term', placeholder='Business name')
+                                input.input-medium(type='text', id='location',name='location', placeholder='Location')
+                                | &nbsp;
+                                input.btn.search-btn(type='submit', value='Search')
+
+                            .businessSearch
+                                table.table.table-striped#businessSearchGrid
+
+                        .tab-pane.fade#edit
+                            .control-group
+                                label.control-label(for='a') Input Label 1
+                                .controls
+                                    input.input-xlarge(id='a',name='a')
+
+        .modal-footer
+            a.btn.btn-large.hide#btn-prev Back
+            a.btn.btn-large.hide.btn-primary#btn-next Save
+
+block javascriptFooter
+    script(type='text/javascript')
+        var orders = new Orders();
+        var cols = [{title:'Name', template:'{{ name }}'}, {title:'Id', template:'{{ locationId }}'}];
+        var g = new GridView({el: $('#promotionGrid'), model:promotions, columns:cols});
+        orders
+

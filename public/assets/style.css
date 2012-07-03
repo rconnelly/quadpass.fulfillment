@@ -37,3 +37,40 @@ body.bootstrap footer p {
 
 
 /* more styles... */
+
+body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+}
+.btn-next {
+    width: 150px !important;
+}
+
+div.listing
+{
+    cursor: pointer;
+}
+
+div.listing:hover
+{
+    border-color: #08C;
+    background: -moz-linear-gradient(top,  rgba(0,0,0,0.09) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.09)), color-stop(100%,rgba(0,0,0,0))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(0,0,0,0.09) 0%,rgba(0,0,0,0) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#17000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+}
+
+.subhead h1 {
+    font-size: 51;
+}
+
+img.listing { float: left; margin-right: 10px; }
+.listing span.review_count { display: block; float: right; }
+
+#promotion-tabs .businessSearch {height: 225px; overflow-y: auto; }
+#promotion-tabs .nav-pills a {  }
+#promotion-tabs tfoot td {text-align: center }
+#promotion-tabs #businessSearchGrid td {cursor: pointer }

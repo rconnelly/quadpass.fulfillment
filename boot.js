@@ -39,6 +39,8 @@ var yelp = require("yelp").createClient({
     consumer_key:sc.get('yelp').consumerKey, consumer_secret:sc.get('yelp').consumerSecret, token:sc.get('yelp').token, token_secret:sc.get('yelp').tokenSecret
 });
 
+
+
 var kit = {
     model:{}, dateformat:require('dateformat'),
     secrets:sc,
@@ -48,6 +50,32 @@ var kit = {
     yelp:yelp,
     port:sc.get('port'),
     stripe: sc.get('stripe')
+};
+
+/** Yelp Helpers */
+kit.yelp.DEFAULT_TERM = 'Restaurants';
+kit.yelp.DEFAULT_LOCATION = 'Atlanta, GA';
+
+kit.yelp.searchStd = function (params, callback) {
+    var maxCount = 1000; // yelp imposed limit
+    var limit = params.limit || 18;
+    var page = params.page || 1;
+    var offset = (page - 1) * limit;
+    var location = params.location || kit.yelp.DEFAULT_LOCATION;
+    var term = params.term || kit.yelp.DEFAULT_TERM;
+    offset = offset <= (maxCount - limit) ? offset : maxCount - limit;
+    kit.yelp.search({term:term, location:location, limit:limit, offset:offset}, function (error, data) {
+        var total = (data.total > maxCount) ? maxCount : data.total
+        callback(error,
+            {
+                searchResult:data,
+                term:term,
+                location:location,
+                error:error,
+                pageCount:Math.floor(total / limit),
+                pageNumber:page
+            });
+    });
 };
 
 /**
@@ -152,7 +180,7 @@ var up = function (onStartup) {
             app.configure(function () {
                 app.set('views', __dirname + '/views');
                 app.set('view engine', 'jade');
-                app.set('view options', { layout:false, pretty:false });
+                app.set('view options', { layout:false, pretty:true });
                 app.use(express.favicon());
                 app.use(express.static(__dirname + '/public'));
 

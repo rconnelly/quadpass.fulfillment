@@ -1,0 +1,35 @@
+.navbar.navbar-fixed-top
+    .navbar-inner
+        .container
+            a.brand(href='/') #{meta.title}
+            a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            .nav-collapse
+                ul.nav
+                    li.admin_home
+                        a(href='/admin') Dashboard
+                    li.admin_promotions
+                        a(href='/admin/promotions') Promotions
+                    li.admin_orders
+                        a(href='/admin/orders') Orders
+
+                ul.nav.pull-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown',href='#')
+                            | Welcome,
+                            strong Username
+                            b.caret
+
+                        ul.dropdown-menu
+                            li
+                                a(href='/account')
+                                    i.icon-user
+                                    | Your Account
+
+                            li.divider
+                            li
+                                a.logout(href='/logout')
+                                    i.icon-remove-circle
+                                    | Logout

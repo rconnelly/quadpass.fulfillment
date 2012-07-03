@@ -3,30 +3,8 @@ var util = require('util')
 
 module.exports.setRoutes = function (app, kit) {
 
-    var DEFAULT_TERM = 'Restaurants';
-    var DEFAULT_LOCATION = 'Atlanta, GA';
 
-    var yelpSearch = function (params, callback) {
-        var maxCount = 1000; // yelp imposed limit
-        var limit = params.limit || 18;
-        var page = params.page || 1;
-        var offset = (page - 1) * limit;
-        var location = params.location || DEFAULT_LOCATION;
-        var term = params.term || DEFAULT_TERM;
-        offset = offset <= (maxCount - limit) ? offset : maxCount - limit;
-        kit.yelp.search({term:term, location:location, limit:limit, offset:offset}, function (error, data) {
-            var total = (data.total > maxCount) ? maxCount : data.total
-            callback(error,
-                {
-                    searchResult:data,
-                    term:term,
-                    location:location,
-                    error:error,
-                    pageCount:Math.floor(total / limit),
-                    pageNumber:page
-                });
-        });
-    }
+    var yelpSearch = kit.yelp.searchStd;
 
     app.get('/', function (req, res, next) {
         var p = {
@@ -34,9 +12,14 @@ module.exports.setRoutes = function (app, kit) {
             location:req.session.location
         };
 
-        p.page = req.query.page;
+        p.page = {
+            title:'QuadPass.com',
+            className:'index'
+        };
 
-        yelpSearch(p, function (error, data) {
+        res.render('index', p);
+
+        /*yelpSearch(p, function (error, data) {
             if (error) return next(JSON.stringify(error));
 
             data.page = {
@@ -46,8 +29,9 @@ module.exports.setRoutes = function (app, kit) {
 
 
             res.render('index', data);
-        });
+        }); */
     });
+
 
     app.get('/account', kit.middleware.redirIfNotLoggedIn, function (req, res) {
         res.json(req.user);
@@ -77,6 +61,7 @@ module.exports.setRoutes = function (app, kit) {
         res.redirect('payment');
     });
 
+
     app.get('/gifts-for/:term/:location?', function (req, res, next) {
         var p = req.params;
         req.session.term = p.term;
@@ -92,9 +77,8 @@ module.exports.setRoutes = function (app, kit) {
                 className:'orderpage'
             };
 
-            res.render('index', data);
+            res.render('list', data);
         });
-
     });
 
     app.get('/partial/gifts-for/:term/:location', function (req, res, next) {
