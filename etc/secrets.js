@@ -8,7 +8,7 @@ module.exports.init = function (isProduction) {
 
 
 module.exports.get = function (key) {
-    return (this.isproduction) ? SECRETS.production[key] : SECRETS.development[key];
+    return (isproduction) ? SECRETS.production[key] : SECRETS.development[key];
 };
 
 var SECRETS = {

@@ -12,121 +12,46 @@ html(lang='en')
 
         block headerContent
 
-
-
-        script
-                window.CLIENTAPP = {
-                    genTime: #{Date.now()},
-                    onload: []
-                  };
-
-        if bootstrap
-            link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')
-            link(rel='stylesheet', href='/assets/style.css')
+        link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/assets/style.css')
         each ss in stylesheets
                 link(rel='stylesheet', href=ss)
 
     - var bodyClass = page.className + bootstrap ? ' bootstrap':''
     body(class='#{bodyClass}')
 
-
         block navBar
-
-
-        if jquery
-            script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
-
-            script $.ajaxSetup({ cache: false, data: { _csrf: "#{req.session._csrf}" } });
 
         .container
             block content
 
-        if bootstrap
-            include includes/_footer
+        include includes/_footer
 
-        if jquery && bootstrap
-            script(src='/libs/bootstrap/js/bootstrap.js')
+        // libs
+        script(src='/libs/jquery-1.7.1.min.js')
+        script(src='/libs/underscore-min.js')
 
-        script
-            // flash messages
-            (function(all) {
+        script(src='/libs/backbone.js')
+        script(src='/libs/backbone-query.js')
+        script(src='/libs/backbone.validation.min.js')
+        script(src='/libs/backbone-nested-v1.1.2.min.js')
+        script(src='/libs/bootstrap/js/bootstrap.js')
 
-                if(new Date() - new Date(CLIENTAPP.genTime) > 10000) {
-                  return; // 10 seconds since genTime - probably back btn nav - dont show messages again
-                }
+        // setup
+        script(type='text/javascript')
+            _.templateSettings = {
+              interpolate : /\{\{(.+?)\}\}/g
+            };
+        script $.ajaxSetup({ cache: false, data: { _csrf: "#{req.session._csrf}" } });
 
-                var $c = false;
+        // views
+        script(src='/libs/views/login.view.js')
 
-                if(window.jQuery && $('body').is('.bootstrap')) {
-                  $c = $('#messages');
-                  if(!$c.size()) {
-                    $c = $('<div id="messages" />').prependTo('#main');
-                  }
-                }
-
-                window.flashMessage = function(type, msg, noclear) {
-                  if($c) {
-                    if(!noclear) {
-                      $c.empty();
-                    }
-                    $c.append(
-                      $('<div class="alert fade in"></div>')
-                        .text(msg)
-                        .append('<a class="close" href="#" data-dismiss="alert">×</a>')
-                        .addClass('alert-'+type)
-                        .alert() // bootstrap-alerts.js
-                    );
-                  }
-                  else {
-                    alert('['+type+'] '+msg);
-                  }
-                }
-
-                for (var type in all) {
-                  var msgs = all[type];
-                  for (var i=0; i < msgs.length; i++) {
-                    flashMessage(type, msgs[i], true);
-                  };
-                };
-
-                // messages can be stored locally to be displayed after a page refresh...
-                var domStore = JSON && JSON.stringify && window.localStorage, // browser must be modern!
-                    KEY = 'flash';
-
-                window.storeFlashMessage = function(type, msg) {
-                  if(domStore) {
-                    var str = domStore.getItem(KEY),
-                        set = str ? JSON.parse(str) : [];
-                    set.push({type:type, msg:msg});
-                    domStore.removeItem(KEY); // workaround QUOTA_EXCEEDED_ERR
-                    domStore.setItem(KEY, JSON.stringify(set));
-                  }
-                  else {
-                    flashMessage(type, msg);
-                  }
-                }
-
-                if(domStore) {
-                  var str = domStore.getItem(KEY),
-                      set = str ? JSON.parse(str) : [];
-                  for (var i=0; i < set.length; i++) {
-                    flashMessage(set[i].type, set[i].msg, true);
-                  };
-                  domStore.removeItem(KEY);
-                }
-
-              })(#{JSON.stringify(req.flash())});
+        // models
+        script(src='/libs/models/login.model.js')
 
         each script in scripts
             script(src=script)
 
         block javascriptFooter
 
-        script
-            (function(o) {
-              for (var i=0, m=o.length; i < m; i++) {
-                o[i].call();
-              };
-            })(CLIENTAPP.onload);
-
-        //script(src='http://quickribbon.com/ribbon/2012/06/7f63475b08b5c58a4d077f78adf9f0dc.js')

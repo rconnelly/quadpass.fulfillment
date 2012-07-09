@@ -1,5 +1,7 @@
 var GridView = Backbone.View.extend({
     events:{
+        'click .load-more': 'onLoadMore',
+        'click tbody td': 'onSelectRow'
     },
     //tagName: 'table',
     addHeader:function () {
@@ -55,8 +57,6 @@ var GridView = Backbone.View.extend({
 
         this.page = 1;
 
-        $(this.el).find('.load-more').live('click',_.bind(this.onLoadMore, this));
-        $(this.el).find('tbody td').live('click',_.bind(this.onSelectRow, this));
 
         var btnDefaults = {
             editClassName:'edit-btn',

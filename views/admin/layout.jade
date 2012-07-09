@@ -12,9 +12,8 @@ html(lang='en')
 
         block headerContent
 
-        if bootstrap
-            link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')
-            link(rel='stylesheet', href='/assets/style.css')
+        link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/assets/style.css')
         each ss in stylesheets
                 link(rel='stylesheet', href=ss)
 
@@ -24,8 +23,7 @@ html(lang='en')
         include includes/_adminnavbar
 
         script(src='/libs/jquery-1.7.1.min.js')
-         script
-            $.ajaxSetup({ cache: false, data: { _csrf: "#{req.session._csrf}" } });
+        script $.ajaxSetup({ cache: false, data: { _csrf: "#{req.session._csrf}" } });
 
         .container
             block content
@@ -40,16 +38,34 @@ html(lang='en')
               interpolate : /\{\{(.+?)\}\}/g
             };
 
+        // libs
         script(src='/libs/backbone.js')
         script(src='/libs/backbone-query.js')
+        script(src='/libs/backbone.validation.min.js')
         script(src='/libs/backbone-nested-v1.1.2.min.js')
-        script(src='/admin/models/promotion.js')
-        script(src='/admin/views/grid.js')
-        script(src='/admin/views/promotion.js')
-        script(src='/admin/models/business.js')
-        script(src='/admin/models/searchresult.js')
-        script(src='/admin/models/order.js')
         script(src='/libs/bootstrap/js/bootstrap.js')
+        script(src='/libs/jquery.form.js')
+
+        script(type='text/javascript')
+            _.extend(Backbone.Validation.callbacks, {
+              valid: function(view, attr, selector) {
+                console.log('valid');
+              },
+              invalid: function(view, attr, error, selector) {
+                console.log('error');
+              }
+            });
+
+        // models
+        script(src='/libs/admin/models/promotion.js')
+        script(src='/libs/admin/models/business.js')
+        script(src='/libs/admin/models/searchresult.js')
+        script(src='/libs/admin/models/order.js')
+
+        // views
+        script(src='/libs/admin/views/shared/grid.view.js')
+        script(src='/libs/admin/views/promotion.view.js')
+        script(src='/libs/admin/views/promotion/promopopup.view.js')
 
         each script in scripts
             script(src=script)

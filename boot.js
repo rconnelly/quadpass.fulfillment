@@ -144,8 +144,8 @@ var up = function (onStartup) {
                     }
                 }
             });
-            mongoose.plugin(require('./lib/timestamps.js'));
-
+            mongoose.plugin(require('./lib/timestamps.js').useTimestamps);
+            kit.mongoose = mongoose;
             /**
              * Auth
              */

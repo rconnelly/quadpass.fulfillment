@@ -70,7 +70,9 @@ div.listing:hover
 img.listing { float: left; margin-right: 10px; }
 .listing span.review_count { display: block; float: right; }
 
-#promotion-tabs .businessSearch {height: 225px; overflow-y: auto; }
+#promotion-tabs .businessSearch {height: 250px; overflow-y: auto; }
 #promotion-tabs .nav-pills a {  }
 #promotion-tabs tfoot td {text-align: center }
 #promotion-tabs #businessSearchGrid td {cursor: pointer }
+
+.control-label { font-weight: bold; }
