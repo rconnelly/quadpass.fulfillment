@@ -2,7 +2,7 @@
   "name": "quadpass",
   "author": "Ryan Connelly (/humans.txt)",
   "description": "Online gift cards",
-  "version": "0.0.1-43",
+  "version": "0.0.1-45",
   "main": "boot.js",
   "engines": {
     "node": "~0.6"
@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "~2.5.6",
     "mongoose": "~2.7.0",
-    "mongoose-auth": "0.0.12",
+    "mongoose-auth": "~0.0.12",
     "connect-mongodb": "~1.1.4",
     "underscore": ">=1.1.6",
     "underscore.string": ">=1.1.6",
@@ -20,9 +20,7 @@
     "jade": "~0.20.0",
     "yelp": "~0.1.1",
     "mongodb": "~1.0.2",
-    "stripe": "~1.1.0",
-    "knox": "0.0.9",
-    "blueimp-file-upload-node": "~1.0.1"
+    "stripe": "~1.1.0"
   },
   "devDependencies": {
     "mocha": "*",
