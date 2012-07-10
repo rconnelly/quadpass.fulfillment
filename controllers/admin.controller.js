@@ -1,5 +1,8 @@
 module.exports.setRoutes = function (app, kit) {
 
+    var Promo = kit.model.Promo,
+        Listing = kit.model.Listing;
+
     app.get('/admin', function (req, res, next) {
         var p = {
             page:{
@@ -51,30 +54,41 @@ module.exports.setRoutes = function (app, kit) {
         ]);
     });
 
-    app.post('/admin/api/promotions', function (req, res, next) {
-        var p = {
-            page:{
-                title:'QuadPass.com Administrator - Orders',
-                className:'admin_Orders'
-            }
-        };
-
-        //kit.yelp.business(req.body.promo.businessId, function (error, data) {
-       //     if (error) return next(JSON.stringify(error));
-
-            var Listing = kit.mongoose.model('Listing');
-            var Promo = kit.mongoose.model('Promo');
-            var l = new Listing({source:'yelp.v2', data:null});
-            var promo = req.body.promo;
-            promo.tags = (promo.tags) ? promo.tags.split(' ') : null;
-            promo.listing = l;
-            var p = new Promo(promo);
-
-            p.save(function(error){
-                res.json([{message:'Ok', code:0}]);
+    var savePromo = function (promo, callback, next) {
+        var _save = function (doc) {
+            doc.save(function(err, response) {
+                if (err) return next(JSON.stringify(err));
+                callback(response._doc);
             });
+        }
 
-        //});
+        if (promo.id) {
+            Promo.findById(promo.id, function (err, doc) {
+                if (err) return next(JSON.stringify(err));
+
+                kit.underscore.extend(doc, promo)
+                _save(doc);
+            });
+        }
+        else {
+            var p = new Promo(promo);
+            p.listings.push({businessId:promo.businessId});
+            _save(p);
+        }
+    };
+
+    app.put('/admin/api/promotions', function (req, res, next) {
+        var promo = req.body;
+        savePromo(promo, function (result) {
+            res.json(result);
+        }, next);
+    });
+
+    app.post('/admin/api/promotions', function (req, res, next) {
+        var promo = req.body;
+        savePromo(promo, function (result) {
+            res.json(result);
+        }, next);
     });
 
     app.get('/admin/api/promotions/:id', function (req, res, next) {

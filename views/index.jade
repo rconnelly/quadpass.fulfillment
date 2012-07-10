@@ -18,6 +18,15 @@ block content
     .page-header
         h1 Popular Gift Ideas
         p Cool ideas that are crowd pleasers!
+        include ./mixins/_listing.mixin.jade
+
+        - var length = promos.length
+        - for (var i = 0; i < length; i=i+3) {
+            .row-fluid
+                - for(var j = 0; j < 3 && i+j < length; j++) {
+                    mixin listing(promos[i+j].listings[0].data, promos[i+j])
+                - }
+        - }
 
     .page-header
         h1 Promoted

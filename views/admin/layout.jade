@@ -41,20 +41,28 @@ html(lang='en')
         // libs
         script(src='/libs/backbone.js')
         script(src='/libs/backbone-query.js')
-        script(src='/libs/backbone.validation.min.js')
+        script(src='/libs/backbone.validation.js')
         script(src='/libs/backbone-nested-v1.1.2.min.js')
         script(src='/libs/bootstrap/js/bootstrap.js')
         script(src='/libs/jquery.form.js')
+        script(src='/libs/backbone.modelbinder.js')
+        script(src='/libs/jquery.tojson.js')
 
         script(type='text/javascript')
             _.extend(Backbone.Validation.callbacks, {
-              valid: function(view, attr, selector) {
-                console.log('valid');
-              },
-              invalid: function(view, attr, error, selector) {
-                console.log('error');
-              }
-            });
+                  valid: function(view, attr, selector) {
+                         var el = view.$('[' + selector + '~=' + attr + ']');
+                         el.parents('.control-group').removeClass('error');
+                     },
+
+                     invalid: function(view, attr, error, selector) {
+                        var el = view.$('[' + selector + '~=' + attr + ']');
+                        el.parents('.control-group').addClass('error');
+                     }
+                }
+             );
+
+
 
         // models
         script(src='/libs/admin/models/promotion.js')

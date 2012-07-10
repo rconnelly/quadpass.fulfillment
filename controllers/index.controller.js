@@ -17,7 +17,11 @@ module.exports.setRoutes = function (app, kit) {
             className:'index'
         };
 
-        res.render('index', p);
+        kit.model.Promo.find({}, function(err,docs){
+            if (err) return next(JSON.stringify(err));
+            p.promos = docs;
+            res.render('index', p);
+        });
 
         /*yelpSearch(p, function (error, data) {
             if (error) return next(JSON.stringify(error));

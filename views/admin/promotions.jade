@@ -44,40 +44,40 @@ block content
                                 table.table.table-striped#businessSearchGrid
 
                         .tab-pane.fade#edit
-                            form.promo.form-horizontal(method='POST', action='/admin/api/promotions')
+                            form.promo.form-horizontal#promoForm(method='POST', action='/admin/api/promotions')
                                 fieldset
-                                    input(type='hidden', name='_csrf', value=req.session._csrf)
-                                    input(type='hidden', id='businessId', name='promo[businessId]')
+                                    input(type='hidden', id='_csrf', name='_csrf', value=req.session._csrf)
+                                    input(type='hidden', id='businessId', name='businessId')
                                     .selected-business.control-group
 
                                     .control-group
                                         label.control-label(for='name') Promotion Name
                                         .controls
-                                            input.input-large(type='text', id='name', name='promo[name]')
+                                            input.input-large(type='text', id='name', name='name')
                                     .control-group
-                                        label.control-label(for='') Id
+                                        label.control-label(for='promoId') Id
                                         .controls
-                                            input.input-xlarge(type='text',id='id',name='promo[id]')
+                                            input.input-xlarge(type='text',id='promoId',name='promoId')
 
                                     .control-group
                                         label.control-label(for='description') Description
                                         .controls
-                                            input.input-xlarge(type='text',id='description',name='promo[description]')
+                                            input.input-xlarge(type='text',id='description',name='description')
 
                                     .control-group
                                        label.control-label(for='restrictions') Restrictions
                                        .controls
-                                           input.input-xlarge(type='text',id='restrictions',name='promo[restrictions]')
+                                           input.input-xlarge(type='text',id='restrictions',name='restrictions')
 
                                     .control-group
                                         label.control-label(for='') Barcode
                                         .controls
-                                            input.input-xlarge(type='text',id='barcode',name='promo[barcode]')
+                                            input.input-xlarge(type='text',id='barcode',name='barcode')
 
                                     .control-group
                                         label.control-label(for='tags') Tags
                                         .controls
-                                            input.input-xlarge#tags(type='text',name='promo[tags]')
+                                            input.input-xlarge#tags(type='text',name='tags')
                                             ul#tagsList
                                             p.help-block Separate each tag with a space
         .modal-footer
@@ -102,5 +102,11 @@ block javascriptFooter
     script(type='text/javascript')
         $(document).ready(function() {
             var view = new PromotionView({el: $('section.main')});
+            $('form.promo input').attr('rel', 'tooltip');
+            var getTitle = function(){
+                var err = $(this).data('error');
+                return err;
+            };
+            $('form.promo input').tooltip({trigger:'manual',placement:'right', title: getTitle});
         });
 

@@ -37,6 +37,24 @@ html(lang='en')
         script(src='/libs/backbone-nested-v1.1.2.min.js')
         script(src='/libs/bootstrap/js/bootstrap.js')
 
+        script(src='/libs/backbone.validation.js')
+        script(src='/libs/jquery.tojson.js')
+
+
+        script(type='text/javascript')
+            _.extend(Backbone.Validation.callbacks, {
+                  valid: function(view, attr, selector) {
+                         var el = view.$('[' + selector + '~=' + attr + ']');
+                         el.parents('.control-group').removeClass('error');
+                     },
+
+                     invalid: function(view, attr, error, selector) {
+                        var el = view.$('[' + selector + '~=' + attr + ']');
+                        el.parents('.control-group').addClass('error');
+                     }
+                }
+             );
+
         // setup
         script(type='text/javascript')
             _.templateSettings = {

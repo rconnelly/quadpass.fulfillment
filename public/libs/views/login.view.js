@@ -1,16 +1,19 @@
+
 var LoginView = Backbone.View.extend({
     events: {
-        //'submit form.login-form': 'showDialog'
+        'submit form.login-form': 'submitForm'
+    },
+    submitForm: function(evt){
+        this.model.set($('form.login-form').toJSON());
+        return this.model.isValid();
     },
     initialize: function(options)
     {
-        Backbone.Validation.bind(this);
+        this.model = new Login();
     },
-
-    validation: {
-        login: {
-            required: true,
-            msg: 'Email is required'
-        }
+    render: function()
+    {
+        Backbone.Validation.bind(this);
+        return this;
     }
 });

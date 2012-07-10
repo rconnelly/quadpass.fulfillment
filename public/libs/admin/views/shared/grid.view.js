@@ -1,7 +1,7 @@
 var GridView = Backbone.View.extend({
     events:{
-        'click .load-more': 'onLoadMore',
-        'click tbody td': 'onSelectRow'
+        'click .load-more':'onLoadMore',
+        'click tbody td':'onSelectRow'
     },
     //tagName: 'table',
     addHeader:function () {
@@ -12,7 +12,7 @@ var GridView = Backbone.View.extend({
 
     },
     addFooter:function () {
-        if(!this.options.footer)
+        if (!this.options.footer)
             return;
 
         var footer = new GridFooterView({model:this.options.footer.model, template:this.options.footer.template,
@@ -28,22 +28,22 @@ var GridView = Backbone.View.extend({
     },
     addAll:function (model_) {
         $(this.el).html('');
-        this.addHeader();
-        this.addFooter();
+        if (model_.length > 0) {
+            this.addHeader();
+            this.addFooter();
 
-        model_.each(function (m) {
-            this.addOne(m);
-        }, this);
+            model_.each(function (m) {
+                this.addOne(m);
+            }, this);
+        }
     },
     onLoadMore:function (evt) {
         this.page++;
-        this.model.trigger('loadmore',{data: {page: this.page}, add: true})
+        this.model.trigger('loadmore', {data:{page:this.page}, add:true})
     },
     onSelectRow:function (evt) {
         var m = $(evt.target).data('model');
-        this.trigger('grid:selected',{targetRow: $(evt.target).parent(), model: m})
-    },
-    showDialog:function (model_) {
+        this.trigger('grid:selected', {targetRow:$(evt.target).parent(), model:m})
     },
     render:function () {
         this.addAll(this.model);
@@ -90,7 +90,7 @@ var GridFooterView = Backbone.View.extend({
     },
     render:function () {
         var td = $('<td>');
-        td.attr('colspan',this.options.columnCount);
+        td.attr('colspan', this.options.columnCount);
         var tpl = $(_.template(this.options.template)(this.model));
         td.append(tpl);
         $(this.el).append(td);
@@ -117,7 +117,7 @@ var GridCellView = Backbone.View.extend({
     },
     render:function () {
         $(this.el).html(this.text(this.options.template));
-        $(this.el).data('model',this.model);
+        $(this.el).data('model', this.model);
         return this;
     },
     text:function (tpl) {

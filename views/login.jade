@@ -12,6 +12,15 @@ block content
         form.login-form.form-horizontal(action='/login', method='post', accept-charset='utf-8')
             input(type='hidden', name='_csrf', value=req.session._csrf)
 
+            - if(typeof(errors) != 'undefined')
+                .alert.alert-error
+                    a.close(data-dismiss='alert', href='#') x
+                    h4.alert-heading Error
+                    p
+                        - each error in errors
+                            | #{error}
+                            br
+
             .control-group
                 label.control-label(for=everyauth.password.loginFormFieldName) Email
                 .controls
@@ -40,6 +49,6 @@ block content
 
 block javascriptFooter
     script(type='text/javascript')
-        new LoginView({el: $('.login')});
+        new LoginView({el: $('.login')}).render();
 
 

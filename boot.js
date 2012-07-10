@@ -235,7 +235,7 @@ var up = function (onStartup) {
 
             process.on('uncaughtException', function (exception) {
                 // danger! see https://github.com/joyent/node/issues/2582
-                kit.log.error("\nuncaughtException", exception);
+                kit.log.error("\nuncaughtException", exception.toJSON());
             });
 
             app.listen(kit.port, function () {

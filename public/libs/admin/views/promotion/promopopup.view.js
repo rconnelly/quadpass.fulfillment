@@ -1,11 +1,18 @@
 var PromoPopupView = Backbone.View.extend({
-    el: $('#create-dlg'),
+    el:$('#create-dlg'),
     events:{
         'submit #promotionBizSearch':'onSearch',
+        'show a[data-toggle="tab"]':'onTabShow',
         'click #btn-next':'goToNextTab',
         'click #btn-prev':'goToPrevTab',
-        'click .nav-pills a':'goToPrevTab',
-        'shown a[data-toggle="tab"]':'onTabShow'
+        'click .nav-pills a':'goToPrevTab'
+    },
+    onModalHide:function (e) {
+        this.selectedModel = null;
+        document.getElementById('promoForm').reset();
+        this.businesses.reset();
+        $('#create-dlg li.active').prev().find('a').tab('show');
+        this.selectedBusinessView.reset();
     },
     onTabLink:function (e) {
         e.preventDefault();
@@ -28,15 +35,19 @@ var PromoPopupView = Backbone.View.extend({
         this.selectedBusinessView = new SelectedBusinessView({model:this.selectedModel}).render();
     },
     show:function (evt) {
+        this.model = new Promotion();
+        this.render();
         $('#create-dlg').modal({backdrop:'static'});
     },
     goToNextTab:function (evt) {
         evt.preventDefault();
-
         if ($('#edit').hasClass('active')) {
-            $('form.promo').ajaxSubmit({target: 'myResultsDiv'});
-        } else {
-            $('#create-dlg li.active').next().find('a').tab('show');
+            this.model.save($('form.promo').toJSON(), {
+                success:function (response) {
+                    $('#create-dlg').modal('hide');
+                }, error:function (error) {
+
+                }});
         }
     },
     goToPrevTab:function (evt) {
@@ -45,18 +56,19 @@ var PromoPopupView = Backbone.View.extend({
     },
     onTabShow:function (evt) {
         if ($('#edit').hasClass('active')) {
-            $('#btn-prev').removeClass('hide');
-            $('#btn-next').removeClass('hide');
-        }
-        else {
             $('#btn-prev').addClass('hide');
             $('#btn-next').addClass('hide');
         }
-    },
-    onSubmitForm:function (evt) {
-        evt.preventDefault();
+        else {
+            if (!this.selectedModel) {
+                return false;
+            }
+            $('#btn-prev').removeClass('hide');
+            $('#btn-next').removeClass('hide');
+        }
     },
     initialize:function (options) {
+        options = options || {};
         this.businesses = new Businesses();
         this.selectedModel = null;
         this.selectedBusinessView = null;
@@ -72,21 +84,25 @@ var PromoPopupView = Backbone.View.extend({
 
         // handle model events
         this.businesses.on('loadmore', this.onLoadMore, this);
+        $('#create-dlg').on('hide', _.bind(this.onModalHide, this));
         this.grid.on('grid:selected', this.onGridSelect, this);
+        //this.modelBinder = (options.modelBinder) || new Backbone.ModelBinder();
 
-        $('form.promo').ajaxForm();
-
-        // add validation
-        Backbone.Validation.bind(this);
+    },
+    render:function () {
+        //this.modelBinder.bind(this.model, $('form.promo'));
+        Backbone.Validation.bind(this, {forceUpdate: false});
+        return this;
     }
 });
 
 var SelectedBusinessView = Backbone.View.extend({
-    el: $('.selected-business'),
-    initialize: function(opts) {
+    el:$('.selected-business'),
+    initialize:function (opts) {
         this.template = _.template($('#selectedModelTemplate').html());
     },
-    render: function() {
+    reset: function() { $(this.el).html(''); },
+    render:function () {
         $(this.el).html(this.template(this.model.toJSON()));
         $('#businessId').val(this.model.get('id'));
         return this;
