@@ -12,7 +12,8 @@ var PromoPopupView = Backbone.View.extend({
         document.getElementById('promoForm').reset();
         this.businesses.reset();
         $('#create-dlg li.active').prev().find('a').tab('show');
-        this.selectedBusinessView.reset();
+        if(this.selectedBusinessView)
+            this.selectedBusinessView.reset();
     },
     onTabLink:function (e) {
         e.preventDefault();

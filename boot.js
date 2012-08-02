@@ -1,11 +1,16 @@
 var IS_PROD = process.env['NODE_ENV'] == 'production';
-var async = require('async');
 
 /**
  * std libs
  */
 var express = require('express')
     , fs = require('fs')
+
+/**
+ *  third party
+ */
+
+    , async = require('async')
 
 /**
  * custom libs
@@ -31,7 +36,8 @@ sc.init(IS_PROD);
 
 var log = require('restify').log;
 log.level(log.Level.Trace);
-
+//var Loggly = require('loggly');
+//var loggly = Loggly.createClient(sc.get('loggly'));
 
 /** Yelp **/
 
@@ -45,6 +51,7 @@ var kit = {
     model:{}, dateformat:require('dateformat'),
     secrets:sc,
     log:log,
+    //loggly: loggly,
     parallelize:libMisc.parallelize,
     middleware:libMiddleware.base,
     yelp:yelp,
@@ -61,7 +68,7 @@ kit.yelp.searchStd = function (params, callback) {
     var limit = params.limit || 18;
     var page = params.page || 1;
     var offset = (page - 1) * limit;
-    var location = params.location || kit.yelp.DEFAULT_LOCATION;
+    var location = params.location;// || kit.yelp.DEFAULT_LOCATION;
     var term = params.term || kit.yelp.DEFAULT_TERM;
     offset = offset <= (maxCount - limit) ? offset : maxCount - limit;
     kit.yelp.search({term:term, location:location, limit:limit, offset:offset}, function (error, data) {
@@ -189,20 +196,29 @@ var up = function (onStartup) {
                 app.use(express.cookieParser());
                 app.use(kit.middleware.session);
 
+                app.use(kit.middleware.geoip);
                 app.use(function (req, res, next) {
                     res.locals(
-                        { meta:{ title:pkg.name, desc:pkg.description, version:pkg.version, author:pkgAuthor
+                        {
+                            meta:{ title:pkg.name, desc:pkg.description, version:pkg.version, author:pkgAuthor
                         }, page:{
                             className:''
-                        }, status:null, jquery:true, bootstrap:true, stylesheets:[], scripts:[], req:req, dateformat:kit.dateformat, path:'' // kit.middleware.parsePath will populate from route, errors:{}
-                        }
-                    );
+                        },
+                            status:null,
+                            jquery:true,
+                            bootstrap:true,
+                            stylesheets:[],
+                            scripts:[],
+                            req:req,
+                            dateformat:kit.dateformat, path:'' // kit.middleware.parsePath will populate from route, errors:{}
+                        });
                     next();
                 });
 
                 app.use(express.methodOverride());
                 app.use(express.csrf());
 
+                app.use(kit.mongooseAuth.middleware());
                 app.use(kit.mongooseAuth.middleware());
 
                 app.use(app.router); // cf https://github.com/bnoguchi/mongoose-auth/issues/52

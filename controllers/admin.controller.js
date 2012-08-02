@@ -48,10 +48,10 @@ module.exports.setRoutes = function (app, kit) {
             }
         };
 
-        res.json([
-            {name:'test name', locationId:'test'},
-            {name:'test name 2', locationId:'test 2'}
-        ]);
+        Promo.find([],[],[],function(err,docs){
+            var json = kit.underscore.map(docs,function(doc) { var d = doc.toJSON(); d.locationName = doc.get('listings')[0].data.name; return d; });
+             res.json(json);
+        });
     });
 
     var savePromo = function (promo, callback, next) {

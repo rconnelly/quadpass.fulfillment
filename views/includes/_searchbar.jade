@@ -30,17 +30,16 @@ form.well.search-form(action='/gifts-for')
                     label &nbsp;
                     button.btn.btn-large.gift-search-submit(type='submit') Search
 
+block javascriptFooter
+    script(type='text/javascript')
+        $('.term-item').click(function(evt){
+            evt.preventDefault();
+            $('.businessname').val($(this).text());
+            $('.search-form').submit();
+        });
 
-script(type='text/javascript')
-    $('.term-item').click(function(evt){
-        debugger;
-        evt.preventDefault();
-        $('.businessname).val($(this).text());
-        $('.search-form').submit();
-    });
-
-    $('.location-item').click(function(evt){
-        evt.preventDefault();
-        $('.location).val($(this).text());
-        $('.search-form').submit();
-    });
+        $('.location-item').click(function(evt){
+            evt.preventDefault();
+            $('.location').val($(this).text());
+            $('.search-form').submit();
+        });

@@ -2,14 +2,18 @@
     .navbar-inner
         .container
             a.brand(href='/') #{meta.title}
+
             a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
                 span.icon-bar
                 span.icon-bar
                 span.icon-bar
-            .nav-collapse
 
-                if req.loggedIn
-                    ul.nav.pull-right
+            .nav-collapse
+                ul.nav.pull-right
+                    li
+                        a(href='#') Location: #{loc.city}, #{loc.region}
+                    li.divider-vertical
+                    if req.loggedIn
                         li.dropdown
                             a.dropdown-toggle(data-toggle='dropdown',href='#')
                                 | Welcome,
@@ -27,8 +31,7 @@
                                     a.logout(href='/logout')
                                         i.icon-remove-circle
                                         | Logout
-                else
-                    ul.nav.pull-right
+                    else
                         li
                             a(href='/login')
                                 i.icon-exclamation-sigh.icon-white

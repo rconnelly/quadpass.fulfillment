@@ -6,9 +6,11 @@ module.exports.get = function(mongoose) {
 
     var OrderSchema = new mongoose.Schema({
         userId             : { type: ObjectId },
-        giftCards           : [GiftCard]
+        giftCards          : [GiftCard],
+        sendDate           : { type: Date },
+        receivedDate       : { type: Date },
+        retryCount         : { type: Number }
     }, { strict: true });
-
 
     return OrderSchema;
 }

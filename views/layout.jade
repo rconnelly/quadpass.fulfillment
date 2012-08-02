@@ -17,6 +17,9 @@ html(lang='en')
         each ss in stylesheets
                 link(rel='stylesheet', href=ss)
 
+        // libs
+        script(src='/libs/jquery-1.7.1.min.js')
+
     - var bodyClass = page.className + bootstrap ? ' bootstrap':''
     body(class='#{bodyClass}')
 
@@ -27,10 +30,8 @@ html(lang='en')
 
         include includes/_footer
 
-        // libs
-        script(src='/libs/jquery-1.7.1.min.js')
-        script(src='/libs/underscore-min.js')
 
+        script(src='/libs/underscore-min.js')
         script(src='/libs/backbone.js')
         script(src='/libs/backbone-query.js')
         script(src='/libs/backbone.validation.min.js')

@@ -35,6 +35,23 @@ block content
         section
             h2 2. Gift Details
             .well
+                .control-group
+                    label.control-label(for='gift[name]') Your Name
+                    .controls
+                        input.input-xlarge(id='sender[name]'
+                            , name='sender[name]'
+                            , type='text'
+                            , required)
+                        - var emailRegex = '[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?'
+
+                .control-group
+                    label.control-label(for='sender[email]') Your Email
+                    .controls
+                        input.input-xlarge(id='sender[email]'
+                            , name='sender[email]'
+                            , type='email'
+                            , pattern=emailRegex
+                            , required)
                 .control-group.giftAmountGroup
                     label.control-label(for='gift[amount]') Gift Amount
                     .controls
@@ -83,27 +100,26 @@ block content
                             each thumb in thumbs
                                 li
                                     a.thumbnail(href='javascript:void(0)',style='cursor: pointer;')
-                                        img(src='http://placehold.it/160x120', alt='')
+                                        img(src='http://placehold.it/100x100', alt='')
                                         .caption
                                             label.radio(for='gift[theme]-'+thumb)
                                                 strong #{thumb}
                                                 input(type='radio',name='gift[theme]',id='gift[theme]-'+thumb)
+                .control-group
+                    label.control-label(for='gift[message]') Personal Message
+                    .controls
+                        textarea(id='gift[message]',name='gift[message]',rows='5',style='display:block; margin: 0; padding:0; width: 100%')
+                .control-group
+                    label.control-label(for='gift[video]') Upload a Video
+                    .controls
+                        input(type='file', name='gift[video]')
 
                 .control-group
-                    label.control-label(for='gift[amount]') Personal Message
-                    .controls
-                        textarea(id='gift[message]',name='gift[message]',rows='7',style='display:block; margin: 0; padding:0; width: 100%')
-                .control-group
-                    label.control-label(for='gift[amount]') Upload a Video
-                    .controls
-                        input(type='file')
-
-                .preview
-                    h2 Gift Card Preview
+                    p.control-label Preview
                     ul.thumbnails
                         li
                             .thumbnail
-                                img(src='http://placehold.it/900x600', alt='')
+                                img(src='http://placehold.it/700x500', alt='')
 
         .form-actions.well
             input.btn-next.btn.btn-large.btn-primary.pull-right(type='submit',value='Next')

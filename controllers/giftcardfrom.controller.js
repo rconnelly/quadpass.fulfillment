@@ -14,12 +14,15 @@ module.exports.setRoutes = function (app, kit) {
         kit.yelp.business(req.params.id, function (error, data) {
             if (error) return next(error);
 
-            res.render('orderpage', {
-                page:{
-                    title:'Order Page',
-                    className:'orderpage'
-                },
-                suggested: data
+            req.session.suggestedListing = data;
+            req.session.save(function(err,result){
+                res.render('orderpage', {
+                    page:{
+                        title:'Order Page',
+                        className:'orderpage'
+                    },
+                    suggested: data
+                });
             });
         });
     });

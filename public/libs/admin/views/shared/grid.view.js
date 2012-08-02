@@ -23,7 +23,7 @@ var GridView = Backbone.View.extend({
 
     },
     addOne:function (model) {
-        var rowView = new GridRowView({model:model, columns:this.options.columns, buttonOptions:this.options.buttonOptions });
+        var rowView = new GridRowView({model:model, columns:this.options.columns, buttonOptions:this.options.buttonOptions, canDelete: this.canDelete });
         $(this.el).append(rowView.render().el);
     },
     addAll:function (model_) {
@@ -66,6 +66,7 @@ var GridView = Backbone.View.extend({
             createClassName:'create-btn',
             allClassName:'btn'
         };
+        this.canDelete = opts.canDelete || false;
 
         this.options.buttonOptions = $.extend(opts.buttonOptions, btnDefaults);
     }
