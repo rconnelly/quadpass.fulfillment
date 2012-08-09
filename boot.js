@@ -4,7 +4,8 @@ var IS_PROD = process.env['NODE_ENV'] == 'production';
  * std libs
  */
 var express = require('express')
-    , fs = require('fs')
+    , fs = require('fs'),
+    util = require('util')
 
 /**
  *  third party
@@ -110,7 +111,7 @@ var up = function (onStartup) {
         sessionSetup:function (callback) {
             var MongoStore = require('connect-mongodb');
 
-            kit.log.debug('Connecting to session database...')
+            kit.log.info('Connecting to session database...')
             kit.sessionStorage = new MongoStore({ url:MONGO_SESS_URL }, function (err) {
                 if (err)
                 {
@@ -119,7 +120,7 @@ var up = function (onStartup) {
                 }
                 else {
 
-                    kit.log.debug('Session ok.')
+                    kit.log.info('Session ok.')
                     kit.middleware.session = express.session({
                         store:kit.sessionStorage, secret:kit.secrets.get('sessionHash'), cookie:{ maxAge:1000 * 60 * 60 * 24 * 7 } // one week
                     });
@@ -132,7 +133,7 @@ var up = function (onStartup) {
         // datastore and authentication setup
         dsSetup:function (callback) {
 
-            kit.log.debug('Setting up datastore...')
+            kit.log.info('Setting up datastore...')
             /**
              * Mongo ODM
              */
@@ -166,7 +167,7 @@ var up = function (onStartup) {
                 kit.model[name] = mongoose.model(name, schema);
             });
 
-            kit.log.debug('Datastore setup complete.')
+            kit.log.info('Datastore setup complete.')
             callback();
 
         },
@@ -251,7 +252,7 @@ var up = function (onStartup) {
 
             process.on('uncaughtException', function (exception) {
                 // danger! see https://github.com/joyent/node/issues/2582
-                kit.log.error("\nuncaughtException", exception.toJSON());
+                kit.log.error("\nUncaughtException: " + util.inspect(exception));
             });
 
             app.listen(kit.port, function () {
