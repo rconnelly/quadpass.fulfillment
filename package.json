@@ -2,7 +2,7 @@
   "name": "quadpass",
   "author": "Ryan Connelly (/humans.txt)",
   "description": "Online gift cards",
-  "version": "0.0.1-94",
+  "version": "0.0.1-96",
   "main": "boot.js",
   "dependencies": {
     "express": "~2.5.6",

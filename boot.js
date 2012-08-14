@@ -196,7 +196,7 @@ var up = function (onStartup) {
                 app.use(express.cookieParser());
                 app.use(kit.middleware.session);
 
-                app.use(kit.middleware.geoip);
+                //app.use(kit.middleware.geoip);
                 app.use(function (req, res, next) {
                     res.locals(
                         {
