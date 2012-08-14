@@ -106,7 +106,6 @@ var app = express.createServer();
 var up = function (onStartup) {
 
     async.series({
-
         // session setup
         sessionSetup:function (callback) {
             var MongoStore = require('connect-mongodb');
@@ -252,7 +251,7 @@ var up = function (onStartup) {
 
             process.on('uncaughtException', function (exception) {
                 // danger! see https://github.com/joyent/node/issues/2582
-                kit.log.error("\nUncaughtException: " + util.inspect(exception));
+                //kit.log.error("\nUncaughtException: " + util.inspect(exception));
             });
 
             app.listen(kit.port, function () {
